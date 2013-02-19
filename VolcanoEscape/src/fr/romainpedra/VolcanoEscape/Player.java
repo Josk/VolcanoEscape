@@ -39,10 +39,7 @@ public class Player extends Actor {
 	}
 	
 	public void update(float delta) {
-		this.gravity += this.gravityForce;
-		if (this.gravity > this.gravityMax)
-			this.gravity = this.gravityMax;
-		this.dirY -= gravity *delta;
+		
 //		this.dirY *= 0.95f;
 		if (!ScreenOut(this.getX(), this.getY() + this.dirY  *delta)) {
 			this.setY(this.getY() + this.dirY  * delta);
@@ -51,7 +48,12 @@ public class Player extends Actor {
 			this.gravity = 0;
 			this.dirX = 0;
 		}
-
+		
+		this.gravity += this.gravityForce;
+		if (this.gravity > this.gravityMax)
+			this.gravity = this.gravityMax;
+		this.dirY -= gravity *delta;
+		
 //		 this.dirX *= 0.9f*delta;
 
 		if (!ScreenOut(this.getX() + this.dirX*delta, this.getY())) {

@@ -36,14 +36,14 @@ public class World {
 		}	
 	}
 	
-	public void UpdateWorld()
+	public void UpdateWorld(float Delta)
 	{
-		if(this.player.getY() > this.scene.getHeight()/3 ) 
+		if(this.player.dirY > 0) 
 		{
 			for(int i  = 0; i<wallLeft.size(); i++)
 			{
 				Wall wallTmp = wallLeft.get(i);
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
 				
 				if(wallTmp.getY()< -200)
 				{
@@ -51,7 +51,7 @@ public class World {
 				}
 				
 				wallTmp = wallRight.get(i);
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
 				
 				if(wallTmp.getY()< -200)
 				{

@@ -73,13 +73,14 @@ public class GameScreen implements Screen {
 		fontBatch.dispose();
 	}
 
+	
 	// temps ecoule depuis que le dernier rock a pop
 	float elapsedTime = 0.0f;
 	
 	
 	public void update(float delta){
 		this.player.update(delta);
-		world.UpdateWorld();
+		world.UpdateWorld(delta);
 		elapsedTime+=delta;
 		if(elapsedTime>1f){
 			spawnRock();
