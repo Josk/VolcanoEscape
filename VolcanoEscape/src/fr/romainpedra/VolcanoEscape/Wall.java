@@ -18,8 +18,8 @@ public class Wall extends Actor {
 	public int sizeX;
 	public int sizeY;
 	
-	public static final float HEIGHT = 10;
-	public static final float WIDTH = 2;
+	public static final float HEIGHT = 100;
+	public static final float WIDTH = 20;
 		
 	TextureRegion rgn = new TextureRegion();
 	public Wall(Stage stage,int x, int y, float SpeedScroll){
@@ -28,7 +28,7 @@ public class Wall extends Actor {
 		setOrigin(0,0);
 		setPosition(x,y);		
 		addAction(sequence(
-				moveTo(x, stage.getHeight()+32f, SpeedScroll),
+				moveTo(x, 0 + 32f, SpeedScroll),
 				run(new Runnable() {
 					@Override
 					public void run() {

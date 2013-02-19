@@ -18,6 +18,9 @@ public class Assets {
 		perso = new Texture(Gdx.files.internal("data/enemi.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		wall = new Texture(Gdx.files.internal("data/enemi.png"));
+		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
 	}
 	
 	public void dispose(){

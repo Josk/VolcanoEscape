@@ -13,6 +13,7 @@ public class GameScreen implements Screen {
 	//private Sprite marineSprite;
 	private Stage scene;
 	private Player player;
+	private World world;
 	
 	private int score = 0;
 //	private int lives = 3;
@@ -37,6 +38,7 @@ public class GameScreen implements Screen {
 		Assets.get().load();
 		
 		player = new Player(scene);
+		world = new World(scene, 10f);
 		
 		/*player.addAction(
 				forever(rotateBy(360, 2.0f))
