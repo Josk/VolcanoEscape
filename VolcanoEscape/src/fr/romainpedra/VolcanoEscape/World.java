@@ -41,7 +41,7 @@ public class World {
 			Wall wallTmp = wallLeft.get(i);
 			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
 			
-			if(wallTmp.getY()< -50f)
+			if(wallTmp.getY()< 0)
 			{
 				wallTmp.remove();
 			}
@@ -49,7 +49,7 @@ public class World {
 			wallTmp = wallRight.get(i);
 			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
 			
-			if(wallTmp.getY()< -50f)
+			if(wallTmp.getY()< 0)
 			{
 				wallTmp.remove();
 			}
