@@ -5,7 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
 
@@ -20,17 +22,17 @@ public class GameScreen implements Screen {
 	private BitmapFont font;
 	private SpriteBatch fontBatch;
 	
-//	private static final int WIDTH = 800;
-//	private static final int HEIGHT = 480;
+	private static final int WIDTH = 800;
+	private static final int HEIGHT = 480;
 	
 	private static GameScreen current;
 	public static GameScreen get() {
 		return current;
 	}
 	
-	public GameScreen(float w, float h) {
+	public GameScreen() {
 		current = this;
-		scene = new Stage(w, h, true);
+		scene = new Stage(WIDTH, HEIGHT, true);
 		
 		font = new BitmapFont();
 		fontBatch = new SpriteBatch();
@@ -48,8 +50,22 @@ public class GameScreen implements Screen {
 		
 		// assigner la scene comme gestionnaire de touch
 		Gdx.input.setInputProcessor(scene);
+		scene.addListener(new ClickListener() {
+			
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				boolean rv = super.touchDown(event, x, y, pointer, button);
+				GameScreen.this.player.hook( x, y);
+				
+				return rv;
+			}
+		});
+
 	}
 
+
+	
 	@Override
 	public void dispose() {
 		Assets.get().dispose();
@@ -60,8 +76,16 @@ public class GameScreen implements Screen {
 	// temps ecoule depuis que le dernier alien a pop
 	float elapsedTime = 0.0f;
 	
+	
+	public void update(float delta){
+		this.player.update(delta);
+		
+	}
+	
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {	
+		update(delta);
+		
 		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
