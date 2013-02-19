@@ -14,7 +14,7 @@ public class VolcanoEscape extends Game{
 	@Override
 	public void create() {
 		current = this;
-		setScreen(new GameScreen(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() ));
+		setScreen(new GameScreen());
 	}
 
 }
