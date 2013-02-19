@@ -16,8 +16,12 @@ public class Rock extends Actor {
 
 	TextureRegion rgn = new TextureRegion();
 	Random random = new Random();
-	public Rock(Stage stage){
-		rgn = new TextureRegion(Assets.get().rocher);
+	float fallSpeed;
+	float rotationSpeed;
+	public Rock(Stage stage,float fallSpeed,float rotationSpeed){
+		this.fallSpeed = fallSpeed;
+		this.rotationSpeed = rotationSpeed;
+		this.rgn = new TextureRegion(Assets.get().rocher);
 		setSize(64f,64f);
 		setOrigin(32f,32f);
 		
@@ -26,14 +30,14 @@ public class Rock extends Actor {
 		setPosition(x,0f);
 		
 		addAction(sequence(
-				moveTo(x, stage.getHeight()+32f, 3.0f),
+				moveTo(x, stage.getHeight()+32f, this.fallSpeed),
 				run(new Runnable() {
 					@Override
 					public void run() {
 						Rock.this.remove();
 					}})
 				));
-		addAction(forever(rotateBy(360, 2.0f)));
+		addAction(forever(rotateBy(360, this.rotationSpeed)));
 	}
 	
 	@Override
