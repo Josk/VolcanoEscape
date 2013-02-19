@@ -15,7 +15,7 @@ public class Assets {
 	
 	
 	public void load(){
-		perso = new Texture(Gdx.files.internal("res/drawable-hdpi/ic_launcher.png"));
+		perso = new Texture(Gdx.files.internal("data/enemi.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 	}
@@ -45,6 +45,8 @@ public class Assets {
 	}
 	
 	private static Assets sInstance;
+	
+	//Asset.get().perso
 	public static Assets get(){
 		if(sInstance == null){
 			sInstance = new Assets();

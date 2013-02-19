@@ -1,0 +1,110 @@
+package fr.romainpedra.VolcanoEscape;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
+
+public class GameScreen implements Screen {
+	//private Sprite marineSprite;
+	private Stage scene;
+	private Player player;
+	
+	private int score = 0;
+//	private int lives = 3;
+	private BitmapFont font;
+	private SpriteBatch fontBatch;
+	
+//	private static final int WIDTH = 800;
+//	private static final int HEIGHT = 480;
+	
+	private static GameScreen current;
+	public static GameScreen get() {
+		return current;
+	}
+	
+	public GameScreen(float w, float h) {
+		current = this;
+		scene = new Stage(w, h, true);
+		
+		font = new BitmapFont();
+		fontBatch = new SpriteBatch();
+		
+		Assets.get().load();
+		
+		player = new Player(scene);
+		
+		/*player.addAction(
+				forever(rotateBy(360, 2.0f))
+		);*/
+		
+		scene.addActor(player);
+		
+		// assigner la scene comme gestionnaire de touch
+		Gdx.input.setInputProcessor(scene);
+	}
+
+	@Override
+	public void dispose() {
+		Assets.get().dispose();
+		font.dispose();
+		fontBatch.dispose();
+	}
+
+	// temps ecoule depuis que le dernier alien a pop
+	float elapsedTime = 0.0f;
+	
+	@Override
+	public void render(float delta) {		
+		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		
+		// incrementer le temps ecoule
+		elapsedTime += Gdx.graphics.getDeltaTime();
+		
+//		// si le temps ecoule est superieur a 1 seconde
+//		if(elapsedTime > 1.0f) {
+//			// ajouter un alien
+//			spawnAlien();
+//			// remise a zero pour le prochain alien
+//			elapsedTime = 0.0f;
+//		}
+//		
+		// update / faire bouger les elements de la scene / animer les actions
+		scene.act();
+		
+		// rendu des elements ajoutes a la scene
+		scene.draw();
+		
+		fontBatch.setProjectionMatrix(scene.getCamera().combined);
+		fontBatch.begin();
+			font.draw(fontBatch, "Score : "+score, 10, 25);
+		fontBatch.end();
+	}
+	
+
+
+	@Override
+	public void resize(int width, int height) {
+	}
+
+	@Override
+	public void pause() {
+	}
+
+	@Override
+	public void resume() {
+	}
+
+	@Override
+	public void show() {
+	}
+
+	@Override
+	public void hide() {
+	}
+}
