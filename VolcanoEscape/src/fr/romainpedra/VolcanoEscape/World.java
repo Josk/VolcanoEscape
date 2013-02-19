@@ -38,22 +38,25 @@ public class World {
 	
 	public void UpdateWorld()
 	{
-		for(int i  = 0; i<wallLeft.size(); i++)
+		if(this.player.getY() > this.scene.getHeight()/3 ) 
 		{
-			Wall wallTmp = wallLeft.get(i);
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
-			
-			if(wallTmp.getY()< 0)
+			for(int i  = 0; i<wallLeft.size(); i++)
 			{
-				wallTmp.remove();
-			}
-			
-			wallTmp = wallRight.get(i);
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
-			
-			if(wallTmp.getY()< 0)
-			{
-				wallTmp.remove();
+				Wall wallTmp = wallLeft.get(i);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+				
+				if(wallTmp.getY()< -200)
+				{
+					wallTmp.remove();
+				}
+				
+				wallTmp = wallRight.get(i);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+				
+				if(wallTmp.getY()< -200)
+				{
+					wallTmp.remove();
+				}
 			}
 		}
 	}

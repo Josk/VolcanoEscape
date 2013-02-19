@@ -40,7 +40,7 @@ public class GameScreen implements Screen {
 		Assets.get().load();
 		
 		player = new Player(scene);
-		world = new World(scene, 10f);
+		world = new World(scene, 5f, player);
 		
 		/*player.addAction(
 				forever(rotateBy(360, 2.0f))
