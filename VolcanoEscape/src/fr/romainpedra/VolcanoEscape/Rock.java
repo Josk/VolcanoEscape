@@ -10,6 +10,7 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.forever;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
 public class Rock extends Actor {
 
@@ -25,7 +26,12 @@ public class Rock extends Actor {
 		setPosition(x,0f);
 		
 		addAction(sequence(
-				moveTo(x, stage.getHeight()+32f, 3.0f)
+				moveTo(x, stage.getHeight()+32f, 3.0f),
+				run(new Runnable() {
+					@Override
+					public void run() {
+						Rock.this.remove();
+					}})
 				));
 		addAction(forever(rotateBy(360, 2.0f)));
 	}
