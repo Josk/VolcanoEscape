@@ -20,7 +20,7 @@ public class Assets {
 		lave = new Texture(Gdx.files.internal("data/lava.png"));
 		lave.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		wall = new Texture(Gdx.files.internal("data/enemi.png"));
+		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 	}

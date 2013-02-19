@@ -18,23 +18,15 @@ public class Wall extends Actor {
 	public int sizeX;
 	public int sizeY;
 	
-	public static final float HEIGHT = 100;
-	public static final float WIDTH = 20;
+	public static final float HEIGHT = 200;
+	public static final float WIDTH = 40;
 		
 	TextureRegion rgn = new TextureRegion();
-	public Wall(Stage stage,int x, int y, float SpeedScroll){
+	public Wall(Stage stage,int x, int y){
 		rgn = new TextureRegion(Assets.get().wall);
 		setSize(Wall.WIDTH,Wall.HEIGHT);
 		setOrigin(0,0);
 		setPosition(x,y);		
-		/*addAction(sequence(
-				moveTo(x, 0 + 32f, SpeedScroll),
-				run(new Runnable() {
-					@Override
-					public void run() {
-						Wall.this.remove();
-					}})
-				));*/
 	}
 	
 	public void draw(SpriteBatch batch, float parentAlpha){
