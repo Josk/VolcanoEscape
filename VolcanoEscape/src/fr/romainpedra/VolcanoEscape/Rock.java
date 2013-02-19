@@ -11,11 +11,11 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.forever;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 
-public class Rocher extends Actor {
+public class Rock extends Actor {
 
 	TextureRegion rgn = new TextureRegion();
 	Random random = new Random();
-	public Rocher(Stage stage){
+	public Rock(Stage stage){
 		rgn = new TextureRegion(Assets.get().rocher);
 		setSize(64f,64f);
 		setOrigin(32f,32f);
