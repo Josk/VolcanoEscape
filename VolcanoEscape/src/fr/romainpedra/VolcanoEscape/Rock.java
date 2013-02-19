@@ -20,6 +20,7 @@ public class Rock extends Actor {
 	float rotationSpeed;
 	float width;
 	float height;
+	
 	public Rock(Stage stage,float fallSpeed,float rotationSpeed, float width, float height){
 		this.fallSpeed = fallSpeed;
 		this.rotationSpeed = rotationSpeed;

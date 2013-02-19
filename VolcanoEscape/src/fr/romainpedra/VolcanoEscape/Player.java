@@ -17,6 +17,8 @@ public class Player extends Actor {
 	public float width=128, height=128;
 	public float dirX, dirY;
 
+	public float wallSize=50;
+	
 	public Player(Stage stage) {
 		rgn = new TextureRegion(Assets.get().perso);
 
@@ -32,10 +34,11 @@ public class Player extends Actor {
 	
 	
 	public void hook(float x,float y){
-		
-		//Vector2 coords = localToStageCoordinates(new Vector2(x, y));
-		this.dirX=(x-(Player.this.getX()+Player.this.getWidth()/2))*2;
-		this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*2;
+		if(x<this.wallSize||x>this.widthStage-this.wallSize){
+			//Vector2 coords = localToStageCoordinates(new Vector2(x, y));
+			this.dirX=(x-(Player.this.getX()+Player.this.getWidth()/2))*2;
+			this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*2;
+		}
 	}
 	
 	public void update(float delta) {
