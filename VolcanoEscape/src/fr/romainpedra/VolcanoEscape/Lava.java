@@ -7,17 +7,28 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class Lava extends Actor{
-	TextureRegion rgnLeft = new TextureRegion();
-	TextureRegion rgnRight = new TextureRegion();
+	TextureRegion rgn = new TextureRegion();
 	
-	public Lava(Stage stage){
-		rgnLeft = new TextureRegion(Assets.get().lave);
-		rgnRight = new TextureRegion(Assets.get().lave);
+	float x;
+	float y;
+	float width;
+	float height;
+	
+	
+	public Lava(Stage stage,float x, float y, float width, float height){
+		rgn = new TextureRegion(Assets.get().lave);
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		setSize(this.width,this.height);
+		setOrigin(this.width/2,this.height/2);
+		
+		setPosition(this.x,this.y);
 	}
 	
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha){
-		batch.draw(rgnLeft,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
-		batch.draw(rgnRight,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
+		batch.draw(rgn,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
 	}
 }
