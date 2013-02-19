@@ -8,7 +8,7 @@ import fr.romainpedra.VolcanoEscape.Assets;
 public class Assets {
 	
 	public Texture perso;
-	public Texture paroie;
+	public Texture wall;
 	public Texture rocher;
 	public Texture lave;
 	public Texture background;
@@ -26,9 +26,9 @@ public class Assets {
 			perso.dispose();
 			perso = null;
 		}
-		if(paroie != null){
-			paroie.dispose();
-			paroie = null;
+		if(wall != null){
+			wall.dispose();
+			wall = null;
 		}
 		if(rocher != null){
 			rocher.dispose();
