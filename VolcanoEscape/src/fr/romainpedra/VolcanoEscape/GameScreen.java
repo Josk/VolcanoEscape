@@ -79,7 +79,7 @@ public class GameScreen implements Screen {
 	
 	public void update(float delta){
 		this.player.update(delta);
-		world.UpdateWorld();
+		world.UpdateWorld(delta);
 		
 	}
 	
