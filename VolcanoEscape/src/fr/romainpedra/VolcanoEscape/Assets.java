@@ -17,6 +17,8 @@ public class Assets {
 	public void load(){
 		perso = new Texture(Gdx.files.internal("data/enemi.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave = new Texture(Gdx.files.internal("data/lava.png"));
+		lave.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 	}
 	
