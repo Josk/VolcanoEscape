@@ -25,7 +25,7 @@ public class Player extends Actor {
 
 		setSize(width, height);
 		setOrigin(width/2, height/2);
-		setPosition(widthStage/2, heightStage-height);
+		setPosition(widthStage/2, 0);
 
 
 	}

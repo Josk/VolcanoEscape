@@ -9,7 +9,7 @@ public class Assets {
 	
 	public Texture perso;
 	public Texture wall;
-	public Texture rocher;
+	public Texture rock;
 	public Texture lave;
 	public Texture background;
 	
@@ -23,6 +23,11 @@ public class Assets {
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		rock = new Texture(Gdx.files.internal("data/rock.png"));
+		rock.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		
+		
 	}
 	
 	public void dispose(){
@@ -35,9 +40,9 @@ public class Assets {
 			wall.dispose();
 			wall = null;
 		}
-		if(rocher != null){
-			rocher.dispose();
-			rocher = null;
+		if(rock != null){
+			rock.dispose();
+			rock = null;
 		}
 		if(lave != null){
 			lave.dispose();

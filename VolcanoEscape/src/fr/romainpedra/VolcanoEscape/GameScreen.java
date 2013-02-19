@@ -73,14 +73,25 @@ public class GameScreen implements Screen {
 		fontBatch.dispose();
 	}
 
-	// temps ecoule depuis que le dernier alien a pop
+	// temps ecoule depuis que le dernier rock a pop
 	float elapsedTime = 0.0f;
 	
 	
 	public void update(float delta){
 		this.player.update(delta);
 		world.UpdateWorld();
-		
+		elapsedTime+=delta;
+		if(elapsedTime>1f){
+			spawnRock();
+			elapsedTime=0f;
+		}
+	}
+	
+	public void spawnRock() {
+		// creer un nouvel alien
+		Rock rock = new Rock(scene, 15f, 1f, 60, 60);
+		// l'ajouter a la scene (il est deja anime--cf. son constructeur)
+		scene.addActor(rock);
 	}
 	
 	@Override

@@ -25,7 +25,7 @@ public class Rock extends Actor {
 		this.rotationSpeed = rotationSpeed;
 		this.width = width;
 		this.height = height;
-		this.rgn = new TextureRegion(Assets.get().rocher);
+		this.rgn = new TextureRegion(Assets.get().rock);
 		setSize(this.width,this.height);
 		setOrigin(this.width/2,this.height/2);
 		
