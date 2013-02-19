@@ -3,6 +3,7 @@ package fr.romainpedra.VolcanoEscape;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import fr.romainpedra.VolcanoEscape.Assets;
 
 public class Assets {
 	
@@ -14,7 +15,7 @@ public class Assets {
 	
 	
 	public void load(){
-		perso = new Texture(Gdx.files.internal("res/drawable-hdpi/ic_launcher.png"));
+		perso = new Texture(Gdx.files.internal("data/enemi.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 	}
@@ -41,6 +42,16 @@ public class Assets {
 			background.dispose();
 			background = null;
 		}
+	}
+	
+	private static Assets sInstance;
+	
+	//Asset.get().perso
+	public static Assets get(){
+		if(sInstance == null){
+			sInstance = new Assets();
+		}
+		return sInstance;
 	}
 
 }
