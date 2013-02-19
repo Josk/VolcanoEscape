@@ -27,14 +27,14 @@ public class Wall extends Actor {
 		setSize(Wall.WIDTH,Wall.HEIGHT);
 		setOrigin(0,0);
 		setPosition(x,y);		
-		addAction(sequence(
+		/*addAction(sequence(
 				moveTo(x, 0 + 32f, SpeedScroll),
 				run(new Runnable() {
 					@Override
 					public void run() {
 						Wall.this.remove();
 					}})
-				));
+				));*/
 	}
 	
 	public void draw(SpriteBatch batch, float parentAlpha){

@@ -24,8 +24,15 @@ public class World {
 		int countWall = (int) (stage.getHeight() / Wall.HEIGHT);
 		for(int i = 0; i < countWall; i++)
 		{
-			stage.addActor(new Wall(stage, 0, (int)(i*Wall.HEIGHT), 32f));
-			stage.addActor(new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT), 32f));
+			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT), 32f);
+			stage.addActor(wallTmp);
+			wallLeft.add(wallTmp); 
+			
+			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT), 32f);
+			stage.addActor(wallTmp);
+			wallRight.add(wallTmp);
 		}	
 	}
+	
+	
 }
