@@ -18,16 +18,20 @@ public class Rock extends Actor {
 	Random random = new Random();
 	float fallSpeed;
 	float rotationSpeed;
-	public Rock(Stage stage,float fallSpeed,float rotationSpeed){
+	float width;
+	float height;
+	public Rock(Stage stage,float fallSpeed,float rotationSpeed, float width, float height){
 		this.fallSpeed = fallSpeed;
 		this.rotationSpeed = rotationSpeed;
+		this.width = width;
+		this.height = height;
 		this.rgn = new TextureRegion(Assets.get().rocher);
-		setSize(64f,64f);
-		setOrigin(32f,32f);
+		setSize(this.width,this.height);
+		setOrigin(this.width/2,this.height/2);
 		
 		
 		float x = (random.nextFloat() *stage.getWidth());
-		setPosition(x,0f);
+		setPosition(x,stage.getHeight());
 		
 		addAction(sequence(
 				moveTo(x, stage.getHeight()+32f, this.fallSpeed),
