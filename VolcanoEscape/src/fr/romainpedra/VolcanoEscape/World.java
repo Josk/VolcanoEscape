@@ -7,32 +7,54 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class World {
 
 	public ArrayList<Rock> rocks; //liste des rochers present sur le terrain
-	public Player player; //Objet Joueur
 	public float speedScroll; //Vitesse de defilement du terrain
-	
 	private ArrayList<Wall> wallRight; //paroies de droite du terrain
 	private ArrayList<Wall> wallLeft; //paroies de gauche du terrain
+	private Stage scene;
 	
-	private int height;
-	private int width;
-	
-	
-	public World(Stage stage, int speedScroll, Player player)
+	public World(Stage stage, float speedScroll)
 	{
+		this.scene = stage;
+		this.wallRight = new ArrayList<Wall>();
+		this.wallLeft = new ArrayList<Wall>();
+		
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
-		this.player = player;
 		
-		int countWall = (int) (stage.getHeight() / Wall.HEIGHT);
+		int countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 1 ;
 		for(int i = 0; i < countWall; i++)
 		{
-			stage.addActor(new Wall(stage, 0, (int)(i*Wall.HEIGHT), 32f));
-			stage.addActor(new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT), 32f));
+			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT));
+			stage.addActor(wallTmp);
+			this.wallLeft.add(wallTmp); 
+			
+			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT));
+			stage.addActor(wallTmp);
+			this.wallRight.add(wallTmp);
 		}	
 	}
 	
-	public void Update()
+	public void UpdateWorld()
 	{
-		
+		for(int i  = 0; i<wallLeft.size(); i++)
+		{
+			Wall wallTmp = wallLeft.get(i);
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+			
+			if(wallTmp.getY()< 0)
+			{
+				wallTmp.remove();
+			}
+			
+			wallTmp = wallRight.get(i);
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+			
+			if(wallTmp.getY()< 0)
+			{
+				wallTmp.remove();
+			}
+		}
 	}
+	
+	
 }
