@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.forever;
@@ -16,15 +18,22 @@ public class Wall extends Actor {
 	public int sizeX;
 	public int sizeY;
 	
+	public static final float HEIGHT = 10;
+	public static final float WIDTH = 2;
+		
 	TextureRegion rgn = new TextureRegion();
 	public Wall(Stage stage,int x, int y, float SpeedScroll){
 		rgn = new TextureRegion(Assets.get().wall);
-		setSize(64f,64f);
-		setOrigin(32f,32f);
-		setPosition(x,y);
-		
+		setSize(Wall.WIDTH,Wall.HEIGHT);
+		setOrigin(0,0);
+		setPosition(x,y);		
 		addAction(sequence(
-				moveTo(x, stage.getHeight()+SpeedScroll, 3.0f)
+				moveTo(x, stage.getHeight()+32f, SpeedScroll),
+				run(new Runnable() {
+					@Override
+					public void run() {
+						Wall.this.remove();
+					}})
 				));
 	}
 	
