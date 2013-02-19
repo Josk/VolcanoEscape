@@ -11,9 +11,11 @@ public class World {
 	private ArrayList<Wall> wallRight; //paroies de droite du terrain
 	private ArrayList<Wall> wallLeft; //paroies de gauche du terrain
 	private Stage scene;
+	private Player player;
 	
-	public World(Stage stage, float speedScroll)
+	public World(Stage stage, float speedScroll, Player player)
 	{
+		this.player = player;
 		this.scene = stage;
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
@@ -36,22 +38,25 @@ public class World {
 	
 	public void UpdateWorld()
 	{
-		for(int i  = 0; i<wallLeft.size(); i++)
+		if(this.player.getY() > this.scene.getHeight()/3 ) 
 		{
-			Wall wallTmp = wallLeft.get(i);
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
-			
-			if(wallTmp.getY()< 0)
+			for(int i  = 0; i<wallLeft.size(); i++)
 			{
-				wallTmp.remove();
-			}
-			
-			wallTmp = wallRight.get(i);
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
-			
-			if(wallTmp.getY()< 0)
-			{
-				wallTmp.remove();
+				Wall wallTmp = wallLeft.get(i);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+				
+				if(wallTmp.getY()< -200)
+				{
+					wallTmp.remove();
+				}
+				
+				wallTmp = wallRight.get(i);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+				
+				if(wallTmp.getY()< -200)
+				{
+					wallTmp.remove();
+				}
 			}
 		}
 	}
