@@ -35,7 +35,7 @@ public class Rock extends Actor {
 		setPosition(x,stage.getHeight());
 		
 		addAction(sequence(
-				moveTo(x, stage.getHeight()+32f, this.fallSpeed),
+				moveTo(x, -32f, this.fallSpeed),
 				run(new Runnable() {
 					@Override
 					public void run() {
