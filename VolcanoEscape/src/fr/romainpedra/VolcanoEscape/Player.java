@@ -46,11 +46,12 @@ public class Player extends Actor {
 //		this.dirY *= 0.95f;
 		if (!ScreenOut(this.getX(), this.getY() + this.dirY  *delta)) {
 			this.setY(this.getY() + this.dirY  * delta);
-		} else {
-			 this.dirY *= -0.5;
-			this.gravity = 0;
-			this.dirX = 0;
 		}
+//		else {
+//			this.dirY *= -0.5;
+//			this.gravity = 0;
+//			this.dirX = 0;
+//		}
 		
 		this.gravity += this.gravityForce;
 		if (this.gravity > this.gravityMax)
@@ -61,8 +62,11 @@ public class Player extends Actor {
 
 		if (!ScreenOut(this.getX() + this.dirX*delta, this.getY())) {
 			this.setX(this.getX() + this.dirX  * delta);
-		} else {
-			this.dirX *= -1;
+		}
+		else {
+			this.dirX = 0;
+			this.dirY = 0;
+//			this.dirX *= -1;
 			// this.dirX=0;
 		}
 

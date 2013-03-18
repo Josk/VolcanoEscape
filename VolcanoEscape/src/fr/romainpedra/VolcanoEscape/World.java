@@ -59,6 +59,17 @@ public class World {
 				}
 			}
 		}
+		
+		for(int i=0; i<this.rocks.size();i++){
+			Rock rock = this.rocks.get(i);
+//			System.out.println(rock.getX()+" "+rock.getY()+" "+player.getX()+" "+player.getY());
+//			System.out.println(Math.sqrt(Math.pow(rock.getX()-player.getX(),2)+Math.pow(rock.getY()-player.getY(),2))<100);
+			if(rock.collide(this.player)){				
+				this.rocks.remove(i);
+				rock.remove();
+				--i;
+			}
+		}
 	}
 	
 	

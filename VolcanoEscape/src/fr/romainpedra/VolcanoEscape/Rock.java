@@ -32,8 +32,11 @@ public class Rock extends Actor {
 		
 		
 		float x = (random.nextFloat() *stage.getWidth());
-		setPosition(x,stage.getHeight());
 		
+		////////////////////////////
+//		setPosition(stage.getWidth()/2,this.height);
+//		/*
+		setPosition(x,stage.getHeight());
 		addAction(sequence(
 				moveTo(x, -32f, this.fallSpeed),
 				run(new Runnable() {
@@ -43,6 +46,21 @@ public class Rock extends Actor {
 					}})
 				));
 		addAction(forever(rotateBy(360, this.rotationSpeed)));
+//		*/
+	}
+	
+	boolean collide(Player player) {
+		if (player.getX()+player.width> this.getX() && player.getX() < this.getX()+this.width
+				&& player.getY()+player.height> this.getY() && player.getY() < this.getY()+this.height
+				)
+			return true;
+		return false;
+
+	}
+	
+	public void Destroy(){
+		this.remove();
+		
 	}
 	
 	@Override

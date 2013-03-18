@@ -17,6 +17,7 @@ public class GameScreen implements Screen {
 	private Player player;
 	private World world;
 	
+	private float spawnRockRate=5f; 
 	private int score = 0;
 //	private int lives = 3;
 	private BitmapFont font;
@@ -82,17 +83,22 @@ public class GameScreen implements Screen {
 		this.player.update(delta);
 		world.UpdateWorld(delta);
 		elapsedTime+=delta;
-		if(elapsedTime>1f){
+		if(elapsedTime>spawnRockRate){
 			spawnRock();
 			elapsedTime=0f;
 		}
 	}
 	
 	public void spawnRock() {
-		// creer un nouvel alien
-		Rock rock = new Rock(scene, 15f, 1f, 60, 60);
-		// l'ajouter a la scene (il est deja anime--cf. son constructeur)
-		scene.addActor(rock);
+		
+//////////////////////////////////////////////////////////////
+//		if(world.rocks.size()==0){
+			// creer un nouvel alien
+			Rock rock = new Rock(scene, 15f, 1f, 60, 60);
+			world.rocks.add(rock);
+			// l'ajouter a la scene (il est deja anime--cf. son constructeur)
+			scene.addActor(rock);
+//		}
 	}
 	
 	@Override
