@@ -81,7 +81,7 @@ public class GameScreen implements Screen {
 	
 	public void update(float delta){
 		this.player.update(delta);
-		world.UpdateWorld(delta);
+		world.UpdateWorld(delta, scene);
 		elapsedTime+=delta;
 		if(elapsedTime>spawnRockRate){
 			spawnRock();

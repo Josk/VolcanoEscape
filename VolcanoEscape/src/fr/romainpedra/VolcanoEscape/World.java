@@ -12,6 +12,7 @@ public class World {
 	private ArrayList<Wall> wallLeft; //paroies de gauche du terrain
 	private Stage scene;
 	private Player player;
+	private int countWall;
 	
 	public World(Stage stage, float speedScroll, Player player)
 	{
@@ -23,7 +24,7 @@ public class World {
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
 		
-		int countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 1 ;
+		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
 		{
 			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT));
@@ -36,7 +37,7 @@ public class World {
 		}	
 	}
 	
-	public void UpdateWorld(float Delta)
+	public void UpdateWorld(float Delta, Stage stage)
 	{
 		if(this.player.dirY > 0) 
 		{
@@ -45,21 +46,59 @@ public class World {
 				Wall wallTmp = wallLeft.get(i);
 				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
 				
-				if(wallTmp.getY()< -200)
+				if(wallTmp.getY()< -1 * Wall.HEIGHT)
 				{
 					wallTmp.remove();
+					wallLeft.remove(i);
+					i -= 1;
+					if(i < 0)
+					{
+						i = 0;
+					}
 				}
 				
-				wallTmp = wallRight.get(i);
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-				
-				if(wallTmp.getY()< -200)
+				if(wallLeft.size() < this.countWall)
 				{
-					wallTmp.remove();
+					int count = this.countWall - wallLeft.size();
+					for(int y = 0; y<count; y++)
+					{
+						int y1 =  (int) wallLeft.get(wallLeft.size()-1).getY();
+						y1 += Wall.HEIGHT ;
+						Wall wallTmp1 = new Wall(stage, 0,y1);
+						stage.addActor(wallTmp1);
+						this.wallLeft.add(wallTmp1); 
+					}
 				}
 			}
+			
+			for(int i  = 0; i<wallRight.size(); i++)
+			{	
+				Wall wallTmp = wallRight.get(i);
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
+				
+				if(wallTmp.getY()<  -1 * Wall.HEIGHT)
+				{
+					wallTmp.remove();
+					wallRight.remove(i);
+					i -= 1;
+					if(i < 0)
+					{
+						i = 0;
+					}
+				}
+				
+				int count = this.countWall - wallRight.size();
+				for(int y = 0; y<count; y++)
+				{
+					int y1 =  (int) wallRight.get(wallRight.size()-1).getY();
+					y1 += Wall.HEIGHT ;
+					Wall wallTmp1 = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH),y1);
+					stage.addActor(wallTmp1);
+					this.wallRight.add(wallTmp1); 
+				}
+				
+			}
 		}
-		
 		for(int i=0; i<this.rocks.size();i++){
 			Rock rock = this.rocks.get(i);
 //			System.out.println(rock.getX()+" "+rock.getY()+" "+player.getX()+" "+player.getY());
@@ -70,7 +109,5 @@ public class World {
 				--i;
 			}
 		}
-	}
-	
-	
+	}	
 }
