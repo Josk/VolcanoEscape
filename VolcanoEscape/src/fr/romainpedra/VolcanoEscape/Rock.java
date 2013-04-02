@@ -47,7 +47,13 @@ public class Rock extends Actor {
 	}
 	
 	public void update(float delta){
-		this.setY(this.getY() - this.fallSpeed * delta - this.player.dirY * delta);
+		if(this.player.dirY > 0) {
+			this.setY(this.getY() - this.fallSpeed * delta - this.player.dirY * delta);
+		}else{
+			this.setY(this.getY() - this.fallSpeed * delta);
+		}
+		
+		this.setRotation(this.getRotation() + this.rotationSpeed * delta);
 	}
 	public void Destroy(){
 		this.remove();

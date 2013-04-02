@@ -95,7 +95,7 @@ public class GameScreen implements Screen {
 //////////////////////////////////////////////////////////////
 //		if(world.rocks.size()==0){
 			// creer un nouvel alien
-			Rock rock = new Rock(scene, 15f, 1f, 60, 60,this.player);
+			Rock rock = new Rock(scene, 400f, 400f, 60, 60,this.player);
 			world.rocks.add(rock);
 			// l'ajouter a la scene (il est deja anime--cf. son constructeur)
 			scene.addActor(rock);
