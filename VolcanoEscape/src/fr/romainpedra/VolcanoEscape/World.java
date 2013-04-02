@@ -24,7 +24,7 @@ public class World {
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
 		
-		this.speedScroll =  1;
+		this.speedScroll =  3;
 		this.rocks = new ArrayList<Rock>();
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
@@ -37,11 +37,18 @@ public class World {
 			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT));
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
-		}	
+		}
 	}
 	
 	public void UpdateWorld(float Delta, Stage stage)
-	{
+	{		
+		//scroll sur le player
+		if(this.player.dirY  == 0)
+		{
+			System.out.println("BLALAALALALAL");
+			this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll);
+		}
+		
 		//Deflilement du mur de Gauche
 		for(int i  = 0; i<wallLeft.size(); i++)
 		{
@@ -136,6 +143,8 @@ public class World {
 				gameOver();return;
 			}
 		}
+		
+		
 	}	
 	
 	
@@ -146,7 +155,7 @@ public class World {
 		
 		this.rocks.clear();
 	
-		this.player.init();
+		//this.player.init();
 	}
 	
 }
