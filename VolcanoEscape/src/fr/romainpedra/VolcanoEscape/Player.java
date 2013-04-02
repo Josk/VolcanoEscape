@@ -25,11 +25,17 @@ public class Player extends Actor {
 		this.widthStage = stage.getWidth();
 		this.heightStage = stage.getHeight();
 
+		init();
+
+
+	}
+	
+	public void init(){
 		setSize(width, height);
 		setOrigin(width/2, height/2);
 		setPosition(widthStage/2, 0);
-
-
+		 this.dirX =0;
+		 this.dirY =0;
 	}
 	
 	
