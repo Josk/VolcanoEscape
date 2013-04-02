@@ -17,6 +17,7 @@ public class GameScreen implements Screen {
 	private Player player;
 	private World world;
 	
+	private float spawnRockRateStart=5f;
 	private float spawnRockRate=5f; 
 	
 //	private int lives = 3;
@@ -36,8 +37,10 @@ public class GameScreen implements Screen {
 		scene = new Stage(WIDTH, HEIGHT, true);
 		
 		font = new BitmapFont();
-		fontBatch = new SpriteBatch();
+
 		
+		fontBatch = new SpriteBatch();
+
 		Assets.get().load();
 		
 		player = new Player(scene);
@@ -99,6 +102,7 @@ public class GameScreen implements Screen {
 			world.rocks.add(rock);
 			// l'ajouter a la scene (il est deja anime--cf. son constructeur)
 			scene.addActor(rock);
+			spawnRockRate*=0.99f;
 //		}
 	}
 	
@@ -127,8 +131,9 @@ public class GameScreen implements Screen {
 		scene.draw();
 		
 		fontBatch.setProjectionMatrix(scene.getCamera().combined);
+		
 		fontBatch.begin();
-			font.draw(fontBatch, "Score : "+player.score, 10, 25);
+			font.draw(fontBatch, "Score : "+(int)player.score, 10, 25);
 		fontBatch.end();
 	}
 	
