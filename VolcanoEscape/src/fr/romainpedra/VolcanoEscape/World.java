@@ -15,8 +15,19 @@ public class World {
 	private Stage scene;
 	private Player player;
 	private int countWall;
-	private int posY;
+//	private int posY;
 	private Lava lava;
+	
+	private float spawnRockRateStart=2f;//5
+	private float spawnRockRate=2f; 
+	private float timeNextSpawn=2f;
+	
+	private float changeSpawnRate=5f;
+	private float spawnModif=0.1f;
+	private float timeNextChangeSpawnRate=5f;
+	
+	// temps ecoule depuis que le dernier rock a pop
+	float elapsedTime = 0.0f;
 	
 	public World(Stage stage, float speedScroll, Player player)
 	{
@@ -54,13 +65,14 @@ public class World {
 		
 	}
 	
-	public void UpdateWorld(float Delta, Stage stage)
+	public void UpdateWorld(float delta, Stage stage)
 	{		
 		//scroll sur le player
 //		if(this.player.dirY  == 0)
 //		{
-			this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll* Delta);
-			this.player.hook.update(speedScroll, Delta);
+		this.player.update(delta);
+		this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll* delta);
+		this.player.hook.update(speedScroll, delta);
 //		}
 		
 		
@@ -72,7 +84,7 @@ public class World {
 			
 			
 			//Defilement 
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll * Delta);
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll * delta);
 			
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()< -1 * Wall.HEIGHT)
@@ -111,7 +123,7 @@ public class World {
 			Wall wallTmp = wallRight.get(i);
 			
 			//Defilement 
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll* Delta);
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll* delta);
 							
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()<  -1 * Wall.HEIGHT)
@@ -146,7 +158,7 @@ public class World {
 		
 		for(int i=0; i<this.rocks.size();i++){
 			Rock rock = this.rocks.get(i);
-			rock.update(Delta);
+			rock.update(delta);
 //			System.out.println(rock.getX()+" "+rock.getY()+" "+player.getX()+" "+player.getY());
 //			System.out.println(Math.sqrt(Math.pow(rock.getX()-player.getX(),2)+Math.pow(rock.getY()-player.getY(),2))<100);
 			if(rock.collide()){				
@@ -162,8 +174,31 @@ public class World {
 			gameOver();
 		}
 		
+		elapsedTime+=delta;
+		if(elapsedTime>timeNextSpawn){
+			spawnRock();
+			timeNextSpawn=elapsedTime+spawnRockRate;
+		}
+		
+		if(elapsedTime>timeNextChangeSpawnRate){
+			
+			spawnRockRate-=spawnModif;
+			System.out.println(spawnRockRate);
+			timeNextChangeSpawnRate=elapsedTime+changeSpawnRate;
+		}
 	}	
 	
+	public void spawnRock() {
+		
+		//////////////////////////////////////////////////////////////
+		//if(world.rocks.size()==0){
+		// creer un nouvel alien
+		Rock rock = new Rock(scene, 600f, 400f, 60, 60,this.player);
+		rocks.add(rock);
+		// l'ajouter a la scene (il est deja anime--cf. son constructeur)
+		scene.addActor(rock);
+		//}
+	}
 	
 	void gameOver(){
 		for(int i=0; i<this.rocks.size();i++){
@@ -172,6 +207,7 @@ public class World {
 		
 		this.rocks.clear();
 	
+		spawnRockRate=spawnRockRateStart;
 		this.player.init();
 	}
 	
