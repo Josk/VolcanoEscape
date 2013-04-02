@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class Rock extends Actor {
 
 	TextureRegion rgn = new TextureRegion();
+	TextureRegion rgnDebug = new TextureRegion();
 	Random random = new Random();
 	float fallSpeed;
 	float rotationSpeed;
@@ -23,6 +24,7 @@ public class Rock extends Actor {
 		this.width = width;
 		this.height = height;
 		this.rgn = new TextureRegion(Assets.get().rock);
+		rgnDebug = new TextureRegion(Assets.get().wall);
 		setSize(this.width,this.height);
 		setOrigin(this.width/2,this.height/2);
 		
@@ -38,8 +40,8 @@ public class Rock extends Actor {
 	}
 	
 	boolean collide() {
-		if (this.player.getX()+this.player.width> this.getX() && this.player.getX() < this.getX()+this.width
-				&& this.player.getY()+this.player.height> this.getY() && this.player.getY() < this.getY()+this.height
+		if (this.player.getHitBoxX()+getWidth()/2-width/2+this.player.width> this.getX() && this.player.getHitBoxX() < this.getX()+this.width
+				&& this.player.getHitBoxY()+this.player.height> this.getY() && this.player.getHitBoxY() < this.getY()+this.height
 				)
 			return true;
 		return false;
@@ -63,5 +65,7 @@ public class Rock extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha){
 		batch.draw(rgn,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
+//		batch.draw(rgnDebug, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+//				getHeight(), width/getWidth(),height/getHeight()/*getScaleX(), getScaleY()*/, 0);
 	}
 }
