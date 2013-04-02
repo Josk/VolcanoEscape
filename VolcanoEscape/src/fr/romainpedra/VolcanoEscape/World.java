@@ -16,6 +16,7 @@ public class World {
 	private Player player;
 	private int countWall;
 	private int posY;
+	private Lava lava;
 	
 	public World(Stage stage, float speedScroll, Player player)
 	{
@@ -26,6 +27,10 @@ public class World {
 		
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
+		
+		
+		this.lava = new Lava(stage, 0, 10,stage.getWidth() , 100);
+		stage.addActor(this.lava);
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
@@ -38,6 +43,8 @@ public class World {
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
 		}
+		
+		
 	}
 	
 	public void UpdateWorld(float Delta, Stage stage)
@@ -45,7 +52,7 @@ public class World {
 		//scroll sur le player
 		if(this.player.dirY  == 0)
 		{
-			this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll);
+			this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll* Delta);
 		}
 		
 		//Deflilement du mur de Gauche
@@ -53,14 +60,9 @@ public class World {
 		{
 			Wall wallTmp = wallLeft.get(i);
 			
-			//Defilement 
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
 			
-			//Si le player a une inertie vers le haut
-			if(this.player.dirY > 0) 
-			{
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-			}
+			//Defilement 
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll * Delta);
 			
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()< -1 * Wall.HEIGHT)
@@ -95,15 +97,8 @@ public class World {
 			Wall wallTmp = wallRight.get(i);
 			
 			//Defilement 
-			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
-			
-			
-			//Si le player a une inertie
-			if(this.player.dirY > 0) 
-			{
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-			}			
-			
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll* Delta);
+							
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()<  -1 * Wall.HEIGHT)
 			{
@@ -144,6 +139,10 @@ public class World {
 			}
 		}
 		
+		if (this.player.getY() <= this.lava.getY()+30 )
+		{
+			gameOver();
+		}
 		
 	}	
 	
