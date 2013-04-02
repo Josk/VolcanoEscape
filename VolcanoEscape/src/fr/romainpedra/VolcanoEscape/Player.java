@@ -11,16 +11,15 @@ public class Player extends Actor {
 	
 	TextureRegion rgnDebug = new TextureRegion();
 //	public float x = 50, y = 50;
-	private float gravity = 0;
-	public float gravityForce = 50f;
-	public float gravityMax = 500;
+//	private float gravity = 0;
+//	public float gravityForce = 50f;
+//	public float gravityMax = 500;
+	
+	public float hookSpeed=4f;
 	public float widthStage, heightStage;
 	public float widthAsset=128, heightAsset=128;
 	public float width=60, height=60;
 	public float dirX, dirY;
-
-	TextureRegion rgnHook = new TextureRegion();
-	public float hookPosX, hookPosY;
 	
 	public int hookedWall=1;
 	
@@ -28,13 +27,17 @@ public class Player extends Actor {
 	
 	public int score = 0;
 	
+	public Hook hook;
+	
 	public Player(Stage stage) {
 		rgn = new TextureRegion(Assets.get().perso);
 		rgnDebug = new TextureRegion(Assets.get().wall);
-		rgnHook= new TextureRegion(Assets.get().rock);
+		
 		this.widthStage = stage.getWidth();
 		this.heightStage = stage.getHeight();
-
+		
+		hook=new Hook(stage, this);
+		
 		init();
 
 
@@ -44,6 +47,9 @@ public class Player extends Actor {
 		setSize(widthAsset, heightAsset);
 //		setOrigin(width/2, height/2);
 		setPosition(wallSize-width/2, heightStage/2);
+		
+		hook.Hooked(wallSize-width/2-10, heightStage/2+50);
+		
 		 this.dirX =0;
 		 this.dirY =0;
 		 this.score=0;
@@ -81,10 +87,11 @@ public class Player extends Actor {
 			}
 						
 			//Vector2 coords = localToStageCoordinates(new Vector2(x, y));
-			this.dirX=(x-(Player.this.getX()+Player.this.getWidth()/2))*2;
-			this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*2;
-			hookPosX=x;
-			hookPosY=y;
+			this.dirX=(x-(Player.this.getX()+Player.this.getWidth()/2))*hookSpeed;
+			this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*hookSpeed;
+//			hookPosX=x;
+//			hookPosY=y;
+			hook.Hooked(x, y);
 		}
 	}
 	
@@ -138,8 +145,6 @@ public class Player extends Actor {
 				getHeight(), getScaleX(), getScaleY(), getRotation());
 //		batch.draw(rgnDebug, getHitBoxX(), getHitBoxY(), getOriginX(), getOriginY(), getWidth(),
 //				getHeight(), width/getWidth(),height/getHeight()/*getScaleX(), getScaleY()*/, getRotation());
-		batch.draw(rgnHook, hookPosX, hookPosY, getOriginX(), getOriginY(), getWidth(),
-				getHeight(), width/getWidth(),height/getHeight()/*getScaleX(), getScaleY()*/, getRotation());
 		
 	}
 }

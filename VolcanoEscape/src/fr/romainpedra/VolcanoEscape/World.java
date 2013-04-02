@@ -50,10 +50,13 @@ public class World {
 	public void UpdateWorld(float Delta, Stage stage)
 	{		
 		//scroll sur le player
-		if(this.player.dirY  == 0)
-		{
+//		if(this.player.dirY  == 0)
+//		{
 			this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll* Delta);
-		}
+			this.player.hook.update(speedScroll, Delta);
+//		}
+		
+		
 		
 		//Deflilement du mur de Gauche
 		for(int i  = 0; i<wallLeft.size(); i++)
