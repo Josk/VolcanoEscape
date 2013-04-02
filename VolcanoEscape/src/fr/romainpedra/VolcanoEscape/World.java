@@ -156,7 +156,7 @@ public class World {
 		
 		this.rocks.clear();
 	
-		//this.player.init();
+		this.player.init();
 	}
 	
 }
