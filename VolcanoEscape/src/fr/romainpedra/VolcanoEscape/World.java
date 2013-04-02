@@ -44,6 +44,7 @@ public class World {
 			this.wallRight.add(wallTmp);
 		}
 		Assets.get().music1.play();
+		Assets.get().music1.setLooping(true);
 		
 		
 	}
