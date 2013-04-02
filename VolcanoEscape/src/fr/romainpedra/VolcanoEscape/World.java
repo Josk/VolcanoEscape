@@ -108,7 +108,20 @@ public class World {
 				this.rocks.remove(i);
 				rock.remove();
 				--i;
+				gameOver();return;
 			}
 		}
 	}	
+	
+	
+	void gameOver(){
+		for(int i=0; i<this.rocks.size();i++){
+			this.rocks.get(i).remove();
+		}
+		
+		this.rocks.clear();
+	
+		this.player.init();
+	}
+	
 }

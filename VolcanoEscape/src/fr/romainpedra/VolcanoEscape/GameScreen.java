@@ -18,7 +18,7 @@ public class GameScreen implements Screen {
 	private World world;
 	
 	private float spawnRockRate=5f; 
-	private int score = 0;
+	
 //	private int lives = 3;
 	private BitmapFont font;
 	private SpriteBatch fontBatch;
@@ -82,6 +82,7 @@ public class GameScreen implements Screen {
 	public void update(float delta){
 		this.player.update(delta);
 		world.UpdateWorld(delta, scene);
+		
 		elapsedTime+=delta;
 		if(elapsedTime>spawnRockRate){
 			spawnRock();
@@ -127,7 +128,7 @@ public class GameScreen implements Screen {
 		
 		fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		fontBatch.begin();
-			font.draw(fontBatch, "Score : "+score, 10, 25);
+			font.draw(fontBatch, "Score : "+player.score, 10, 25);
 		fontBatch.end();
 	}
 	
