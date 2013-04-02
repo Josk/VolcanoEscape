@@ -2,6 +2,8 @@ package fr.romainpedra.VolcanoEscape;
 
 import java.util.ArrayList;
 
+import javax.swing.text.Position;
+
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class World {
@@ -13,6 +15,7 @@ public class World {
 	private Stage scene;
 	private Player player;
 	private int countWall;
+	private int posY;
 	
 	public World(Stage stage, float speedScroll, Player player)
 	{
@@ -21,7 +24,7 @@ public class World {
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
 		
-		this.speedScroll =  speedScroll;
+		this.speedScroll =  1;
 		this.rocks = new ArrayList<Rock>();
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
@@ -39,54 +42,77 @@ public class World {
 	
 	public void UpdateWorld(float Delta, Stage stage)
 	{
-		if(this.player.dirY > 0) 
+		//Deflilement du mur de Gauche
+		for(int i  = 0; i<wallLeft.size(); i++)
 		{
-			for(int i  = 0; i<wallLeft.size(); i++)
+			Wall wallTmp = wallLeft.get(i);
+			
+			//Defilement 
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+			
+			//Si le player a une inertie vers le haut
+			if(this.player.dirY > 0) 
 			{
-				Wall wallTmp = wallLeft.get(i);
 				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-				
-				if(wallTmp.getY()< -1 * Wall.HEIGHT)
+			}
+			
+			//Si un mur sort de l'ecran
+			if(wallTmp.getY()< -1 * Wall.HEIGHT)
+			{
+				wallTmp.remove();
+				wallLeft.remove(i);
+				i -= 1;
+				if(i < 0)
 				{
-					wallTmp.remove();
-					wallLeft.remove(i);
-					i -= 1;
-					if(i < 0)
-					{
-						i = 0;
-					}
-				}
-				
-				if(wallLeft.size() < this.countWall)
-				{
-					int count = this.countWall - wallLeft.size();
-					for(int y = 0; y<count; y++)
-					{
-						int y1 =  (int) wallLeft.get(wallLeft.size()-1).getY();
-						y1 += Wall.HEIGHT ;
-						Wall wallTmp1 = new Wall(stage, 0,y1);
-						stage.addActor(wallTmp1);
-						this.wallLeft.add(wallTmp1); 
-					}
+					i = 0;
 				}
 			}
 			
-			for(int i  = 0; i<wallRight.size(); i++)
-			{	
-				Wall wallTmp = wallRight.get(i);
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-				
-				if(wallTmp.getY()<  -1 * Wall.HEIGHT)
+			//si le nombre de mur est inferieur au nombre de mur a afficher
+			if(wallLeft.size() < this.countWall)
+			{
+				int count = this.countWall - wallLeft.size();
+				for(int y = 0; y<count; y++)
 				{
-					wallTmp.remove();
-					wallRight.remove(i);
-					i -= 1;
-					if(i < 0)
-					{
-						i = 0;
-					}
+					int y1 =  (int) wallLeft.get(wallLeft.size()-1).getY();
+					y1 += Wall.HEIGHT ;
+					Wall wallTmp1 = new Wall(stage, 0,y1);
+					stage.addActor(wallTmp1);
+					this.wallLeft.add(wallTmp1); 
 				}
-				
+			}
+		}
+		
+		//Defilement du mur de droite
+		for(int i  = 0; i<wallRight.size(); i++)
+		{	
+			Wall wallTmp = wallRight.get(i);
+			
+			//Defilement 
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll);
+			
+			
+			//Si le player a une inertie
+			if(this.player.dirY > 0) 
+			{
+				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
+			}			
+			
+			//Si un mur sort de l'ecran
+			if(wallTmp.getY()<  -1 * Wall.HEIGHT)
+			{
+				wallTmp.remove();
+				wallRight.remove(i);
+				i -= 1;
+				if(i < 0)
+				{
+					i = 0;
+				}
+			}
+			
+			//si le nombre de mur est inferieur au nombre de mur a afficher
+			if(wallRight.size() < this.countWall)
+			{
 				int count = this.countWall - wallRight.size();
 				for(int y = 0; y<count; y++)
 				{
@@ -96,9 +122,9 @@ public class World {
 					stage.addActor(wallTmp1);
 					this.wallRight.add(wallTmp1); 
 				}
-				
 			}
 		}
+		
 		for(int i=0; i<this.rocks.size();i++){
 			Rock rock = this.rocks.get(i);
 //			System.out.println(rock.getX()+" "+rock.getY()+" "+player.getX()+" "+player.getY());
