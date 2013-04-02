@@ -28,21 +28,26 @@ public class World {
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
 		
+		this.lava = new Lava(stage, 0, 0,stage.getWidth() , 110);
+		this.lava.toFront();
 		
-		this.lava = new Lava(stage, 0, 10,stage.getWidth() , 100);
-		stage.addActor(this.lava);
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
 		{
 			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT));
+			//wallTmp.toBack();
 			stage.addActor(wallTmp);
-			this.wallLeft.add(wallTmp); 
+			this.wallLeft.add(wallTmp);
 			
 			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT));
+			//wallTmp.toBack();
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
+			//wallTmp.setZIndex(5);
 		}
+		stage.addActor(this.lava);
+		this.lava.toFront();
 		Assets.get().music1.play();
 		Assets.get().music1.setLooping(true);
 		
@@ -90,8 +95,12 @@ public class World {
 					int y1 =  (int) wallLeft.get(wallLeft.size()-1).getY();
 					y1 += Wall.HEIGHT ;
 					Wall wallTmp1 = new Wall(stage, 0,y1);
+					//wallTmp1.toBack();
 					stage.addActor(wallTmp1);
-					this.wallLeft.add(wallTmp1); 
+					this.wallLeft.add(wallTmp1);
+					//wallTmp1.setZIndex(5);
+					this.lava.toFront();
+					
 				}
 			}
 		}
@@ -125,8 +134,12 @@ public class World {
 					int y1 =  (int) wallRight.get(wallRight.size()-1).getY();
 					y1 += Wall.HEIGHT ;
 					Wall wallTmp1 = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH),y1);
+					//wallTmp1.toBack();
 					stage.addActor(wallTmp1);
-					this.wallRight.add(wallTmp1); 
+					this.wallRight.add(wallTmp1);
+					//wallTmp1.setZIndex(5);
+					//this.lava.to
+					
 				}
 			}
 		}

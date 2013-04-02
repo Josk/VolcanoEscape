@@ -26,10 +26,12 @@ public class Wall extends Actor {
 		rgn = new TextureRegion(Assets.get().wall);
 		setSize(Wall.WIDTH,Wall.HEIGHT);
 		setOrigin(0,0);
-		setPosition(x,y);		
+		setPosition(x,y);
+		this.setZIndex(5);
 	}
 	
 	public void draw(SpriteBatch batch, float parentAlpha){
+		//this.setZIndex(5);
 		batch.draw(rgn,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());		
 	}
 }
