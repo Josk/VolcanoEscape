@@ -19,6 +19,8 @@ public class Player extends Actor {
 
 	public float wallSize=50;
 	
+	public int score = 0;
+	
 	public Player(Stage stage) {
 		rgn = new TextureRegion(Assets.get().perso);
 
@@ -49,22 +51,18 @@ public class Player extends Actor {
 	
 	public void update(float delta) {
 		
-//		this.dirY *= 0.95f;
+
 		if (!ScreenOut(this.getX(), this.getY() + this.dirY  *delta)) {
 			this.setY(this.getY() + this.dirY  * delta);
 		}
-//		else {
-//			this.dirY *= -0.5;
-//			this.gravity = 0;
-//			this.dirX = 0;
-//		}
-		
+
+/*		
 		this.gravity += this.gravityForce;
 		if (this.gravity > this.gravityMax)
 			this.gravity = this.gravityMax;
 		this.dirY -= gravity *delta;
-		
-//		 this.dirX *= 0.9f*delta;
+	*/	
+
 
 		if (!ScreenOut(this.getX() + this.dirX*delta, this.getY())) {
 			this.setX(this.getX() + this.dirX  * delta);
@@ -75,7 +73,9 @@ public class Player extends Actor {
 //			this.dirX *= -1;
 			// this.dirX=0;
 		}
-
+		
+		if(this.getY()>this.score)
+			this.score=(int)this.getY();
 	}
 
 	boolean ScreenOut(float newX, float newY) {
