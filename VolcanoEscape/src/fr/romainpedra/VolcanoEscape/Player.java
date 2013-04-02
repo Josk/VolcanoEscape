@@ -17,6 +17,9 @@ public class Player extends Actor {
 	public float width=128, height=128;
 	public float dirX, dirY;
 
+	
+	public int hookedWall=-1;
+	
 	public float wallSize=50;
 	
 	public int score = 0;
@@ -34,15 +37,40 @@ public class Player extends Actor {
 	
 	public void init(){
 		setSize(width, height);
-		setOrigin(width/2, height/2);
-		setPosition(widthStage/2, 0);
+//		setOrigin(width/2, height/2);
+		setPosition(wallSize, heightStage/2);
 		 this.dirX =0;
 		 this.dirY =0;
+		 this.score=0;
+		 
 	}
-	
 	
 	public void hook(float x,float y){
 		if(x<this.wallSize||x>this.widthStage-this.wallSize){
+//			System.out.println(x+" "+this.widthStage/2+" "+(x<this.widthStage/2));
+//			
+//			if(x<this.widthStage/2){
+//				
+//				System.out.println("ok");
+//			}else{
+//				System.out.println("no");
+//			}
+//			
+//			if(/*this.hookedWall==1&&*/x<this.widthStage/2){
+//				System.out.println("L No");
+//				return;
+//			}else{
+//				this.hookedWall=1;
+//				System.out.println("L ok");
+//			}
+//			System.out.println(x+" "+this.widthStage/2+" "+(x>this.widthStage/2));
+//			if(/*this.hookedWall==2&&*/x>this.widthStage/2){
+//				System.out.println("R no");
+//				return;
+//			}else{
+//				this.hookedWall=2;
+//				System.out.println("R ok");
+//			}
 			//Vector2 coords = localToStageCoordinates(new Vector2(x, y));
 			this.dirX=(x-(Player.this.getX()+Player.this.getWidth()/2))*2;
 			this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*2;
