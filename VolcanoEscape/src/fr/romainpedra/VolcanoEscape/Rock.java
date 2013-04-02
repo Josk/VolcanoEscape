@@ -6,11 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.forever;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
 
 public class Rock extends Actor {
 
@@ -20,8 +15,9 @@ public class Rock extends Actor {
 	float rotationSpeed;
 	float width;
 	float height;
+	Player player;
 	
-	public Rock(Stage stage,float fallSpeed,float rotationSpeed, float width, float height){
+	public Rock(Stage stage,float fallSpeed,float rotationSpeed, float width, float height, Player player){
 		this.fallSpeed = fallSpeed;
 		this.rotationSpeed = rotationSpeed;
 		this.width = width;
@@ -30,6 +26,7 @@ public class Rock extends Actor {
 		setSize(this.width,this.height);
 		setOrigin(this.width/2,this.height/2);
 		
+		this.player = player;
 		
 		float x = (random.nextFloat() *stage.getWidth());
 		
@@ -37,27 +34,21 @@ public class Rock extends Actor {
 //		setPosition(stage.getWidth()/2,this.height);
 //		/*
 		setPosition(x,stage.getHeight());
-		addAction(sequence(
-				moveTo(x, -32f, this.fallSpeed),
-				run(new Runnable() {
-					@Override
-					public void run() {
-						Rock.this.remove();
-					}})
-				));
-		addAction(forever(rotateBy(360, this.rotationSpeed)));
 //		*/
 	}
 	
-	boolean collide(Player player) {
-		if (player.getX()+player.width> this.getX() && player.getX() < this.getX()+this.width
-				&& player.getY()+player.height> this.getY() && player.getY() < this.getY()+this.height
+	boolean collide() {
+		if (this.player.getX()+this.player.width> this.getX() && this.player.getX() < this.getX()+this.width
+				&& this.player.getY()+this.player.height> this.getY() && this.player.getY() < this.getY()+this.height
 				)
 			return true;
 		return false;
 
 	}
 	
+	public void update(float delta){
+		this.setY(this.getY() - this.fallSpeed * delta - this.player.dirY * delta);
+	}
 	public void Destroy(){
 		this.remove();
 		
