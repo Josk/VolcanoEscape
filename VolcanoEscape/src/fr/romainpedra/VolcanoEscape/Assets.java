@@ -1,6 +1,8 @@
 package fr.romainpedra.VolcanoEscape;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,7 +16,7 @@ public class Assets {
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
 	public Texture background;
-	
+	public Music music1;
 	
 	public void load(){
 		perso = new Texture(Gdx.files.internal("data/enemi.png"));
@@ -43,6 +45,10 @@ public class Assets {
 		
 		rock = new Texture(Gdx.files.internal("data/rock.png"));
 		rock.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
+		
+		
 		
 	}
 	
@@ -87,6 +93,10 @@ public class Assets {
 		if(background != null){
 			background.dispose();
 			background = null;
+		}
+		if(music1 != null){
+			music1.dispose();
+			music1 = null;
 		}
 	}
 	
