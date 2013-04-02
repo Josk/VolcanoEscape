@@ -24,7 +24,7 @@ public class World {
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
 		
-		this.speedScroll =  3;
+		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
@@ -45,7 +45,6 @@ public class World {
 		//scroll sur le player
 		if(this.player.dirY  == 0)
 		{
-			System.out.println("BLALAALALALAL");
 			this.player.setPosition(this.player.getX(), this.player.getY() - speedScroll);
 		}
 		
