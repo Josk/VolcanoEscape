@@ -43,6 +43,7 @@ public class World {
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
 		}
+		Assets.get().music1.play();
 		
 		
 	}
