@@ -60,17 +60,9 @@ public class World {
 		{
 			Wall wallTmp = wallLeft.get(i);
 			
-			//Si le player a une inertie vers le haut
-			if(this.player.dirY > 0) 
-			{
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-			}
-			else
-			{
-				//Defilement 
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll * Delta);
-				
-			}
+			
+			//Defilement 
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll * Delta);
 			
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()< -1 * Wall.HEIGHT)
@@ -104,20 +96,9 @@ public class World {
 		{	
 			Wall wallTmp = wallRight.get(i);
 			
-			
-			
-			//Si le player a une inertie
-			if(this.player.dirY > 0) 
-			{
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - (this.player.dirY * Delta));
-			}
-			else
-			{
-				//Defilement 
-				wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll* Delta);
-				
-			}
-			
+			//Defilement 
+			wallTmp.setPosition(wallTmp.getX(), wallTmp.getY() - speedScroll* Delta);
+							
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()<  -1 * Wall.HEIGHT)
 			{
