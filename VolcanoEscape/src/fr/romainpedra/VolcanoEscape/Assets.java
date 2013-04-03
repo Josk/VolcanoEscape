@@ -59,36 +59,36 @@ public class Assets {
 		lave6.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
-		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		wall.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		wallLeft = new Texture(Gdx.files.internal("data/LeftWall.png"));
-		wallLeft.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		wallLeft.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		wallRight = new Texture(Gdx.files.internal("data/RightWall.png"));
-		wallRight.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		wallRight.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		rock = new Texture(Gdx.files.internal("data/rock.png"));
-		rock.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		rock.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
 		
 		laveOverlaid1 = new Texture(Gdx.files.internal("data/overlay1.png"));
-		laveOverlaid1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid1.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		laveOverlaid2 = new Texture(Gdx.files.internal("data/overlay2.png"));
-		laveOverlaid2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid2.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		laveOverlaid3 = new Texture(Gdx.files.internal("data/overlay3.png"));
-		laveOverlaid3.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid3.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		laveOverlaid4 = new Texture(Gdx.files.internal("data/overlay4.png"));
-		laveOverlaid4.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid4.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		laveOverlaid5 = new Texture(Gdx.files.internal("data/overlay5.png"));
-		laveOverlaid5.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid5.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		laveOverlaid6 = new Texture(Gdx.files.internal("data/overlay6.png"));
-		laveOverlaid6.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid6.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 
 		font = Gdx.files.internal("data/fonts/font.fnt");
 
