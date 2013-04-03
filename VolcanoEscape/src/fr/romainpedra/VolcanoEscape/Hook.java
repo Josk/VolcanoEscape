@@ -11,7 +11,7 @@ public class Hook extends Actor {
 	public float width=60, height=60;
 	public float widthChain=30, heightChain=30;
 	
-	public int chainSpace=10;
+	public int chainSpace=20;
 	
 	public Player player;
 	
@@ -38,7 +38,7 @@ public class Hook extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 ////////////////////////
-this.toFront();
+//this.toFront();
 		batch.draw(rgn, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
 				getHeight(), getScaleX(), getScaleY(), getRotation());
 		

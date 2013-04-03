@@ -12,8 +12,12 @@ import fr.romainpedra.VolcanoEscape.Assets;
 
 public class Assets {
 	
-	public Texture perso;
-	public Texture persoWait;
+	public Texture persoJumpL;
+	public Texture persoWaitL;
+
+	public Texture persoJumpR;
+	public Texture persoWaitR;
+	
 	public Texture wall, wallLeft, wallRight;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
@@ -24,11 +28,17 @@ public class Assets {
 	public FileHandle fontImg;
 	
 	public void load(){
-		perso = new Texture(Gdx.files.internal("data/heroJump.png"));
-		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		persoJumpL = new Texture(Gdx.files.internal("data/heroJumpL.png"));
+		persoJumpL.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
-		persoWait = new Texture(Gdx.files.internal("data/heroWait.png"));
-		persoWait.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		persoWaitL = new Texture(Gdx.files.internal("data/heroWaitL.png"));
+		persoWaitL.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		persoJumpR = new Texture(Gdx.files.internal("data/heroJumpR.png"));
+		persoJumpR.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		persoWaitR = new Texture(Gdx.files.internal("data/heroWaitR.png"));
+		persoWaitR.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave1 = new Texture(Gdx.files.internal("data/lava1.png"));
 		lave1.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
@@ -90,9 +100,9 @@ public class Assets {
 	
 	public void dispose(){
 		
-		if(perso != null){
-			perso.dispose();
-			perso = null;
+		if(persoJumpL != null){
+			persoJumpL.dispose();
+			persoJumpL = null;
 		}
 		if(wallLeft != null){
 			wallLeft.dispose();
