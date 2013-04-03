@@ -15,6 +15,7 @@ public class Assets {
 	public Texture wall;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
+	public Texture laveOverlaid;
 	public Texture background;
 	public Music music1;
 	
@@ -48,8 +49,8 @@ public class Assets {
 		
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
 		
-		
-		
+		/*laveOverlaid = new Texture(Gdx.files.internal("data/overlay.png"));
+		laveOverlaid.setFilter(TextureFilter.Linear, TextureFilter.Linear);*/
 	}
 	
 	public void dispose(){

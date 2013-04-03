@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 
 public class Hook extends Actor {
 	TextureRegion rgn = new TextureRegion();
@@ -59,7 +60,7 @@ public class Hook extends Actor {
 		}
 		
 		int nbChain=getNbChain(startPos, endPos);
-		System.out.println(nbChain);
+		//System.out.println(nbChain);
 		for(int i=0;i<nbChain;++i){
 			float x=lerp(((float)i/(float)nbChain),startPos,endPos);
 //			System.out.println(i/nbChain+" "+startPos+" "+EndPos+" "+x);

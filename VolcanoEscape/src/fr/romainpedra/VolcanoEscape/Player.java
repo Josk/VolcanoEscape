@@ -25,7 +25,7 @@ public class Player extends Actor {
 	
 	public float wallSize=50;
 	
-	public int score = 0;
+	public float score = 0;
 	
 	public Hook hook;
 	
@@ -57,7 +57,7 @@ public class Player extends Actor {
 	}
 	
 	public void hook(float x,float y){
-		if(x<this.wallSize||x>this.widthStage-this.wallSize){
+		if(x<this.wallSize*4||x>this.widthStage-this.wallSize*4){
 			
 //			System.out.println(this.hookedWall);
 			switch (this.hookedWall) {
@@ -67,6 +67,7 @@ public class Player extends Actor {
 					return;
 				}else{
 					this.hookedWall=2;
+					x=this.widthStage;
 //					System.out.println("L ok");
 				}
 				break;
@@ -77,6 +78,7 @@ public class Player extends Actor {
 					return;
 				}else{
 					this.hookedWall=1;
+					x=0;
 //					System.out.println("R ok");
 				}
 				break;
@@ -120,8 +122,9 @@ public class Player extends Actor {
 			// this.dirX=0;
 		}
 		
-		if(this.getY()>this.score)
-			this.score=(int)this.getY();
+//		if(this.getY()>this.score)
+//			this.score=(int)this.getY();
+		this.score+=delta;
 	}
 
 	boolean ScreenOut(float newX, float newY) {
