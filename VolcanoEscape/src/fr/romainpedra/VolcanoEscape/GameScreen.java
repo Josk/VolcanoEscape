@@ -2,11 +2,14 @@ package fr.romainpedra.VolcanoEscape;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
@@ -23,6 +26,7 @@ public class GameScreen implements Screen {
 //	private int lives = 3;
 	private BitmapFont font;
 	private SpriteBatch fontBatch;
+	private Label scoreLabel;
 	
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 480;
@@ -36,12 +40,18 @@ public class GameScreen implements Screen {
 		current = this;
 		scene = new Stage(WIDTH, HEIGHT, true);
 		
-		font = new BitmapFont();
-
 		
-		fontBatch = new SpriteBatch();
+		/*LabelStyle labelStyle = new LabelStyle();
+		labelStyle.font = font;
+		labelStyle.fontColor = Color.WHITE;
+		scoreLabel = new Label("TA MAMAN", new LabelStyle());
+		scoreLabel.setPosition(50, 50);*/
 
 		Assets.get().load();
+		
+		font = new BitmapFont(Assets.get().font,Assets.get().fontImg,false);
+		font.setScale(0.5f,0.5f);
+		fontBatch = new SpriteBatch();
 		
 		player = new Player(scene);
 		world = new World(scene, 400f, player);
@@ -109,10 +119,15 @@ public class GameScreen implements Screen {
 		// rendu des elements ajoutes a la scene
 		scene.draw();
 		
+		
+		/*fontBatch.begin();
+		scoreLabel.draw(fontBatch, 100);
+		fontBatch.end();*/
+		
 		fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		
 		fontBatch.begin();
-			font.draw(fontBatch, "Score : "+(int)player.score, 10, 25);
+			font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 10);
 		fontBatch.end();
 	}
 	
