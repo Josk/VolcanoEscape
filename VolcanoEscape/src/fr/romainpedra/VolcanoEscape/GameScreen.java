@@ -99,8 +99,10 @@ public class GameScreen implements Screen {
 	public void render(float delta) {	
 		update(delta);
 		
-		Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		Gdx.gl.glClearColor(0.03f, 0.0f, 0.04f, 1.0f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		
+		
 		
 		// incrementer le temps ecoule
 		elapsedTime += Gdx.graphics.getDeltaTime();
@@ -127,7 +129,7 @@ public class GameScreen implements Screen {
 		fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		
 		fontBatch.begin();
-			font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 10);
+			font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 0);
 		fontBatch.end();
 	}
 	

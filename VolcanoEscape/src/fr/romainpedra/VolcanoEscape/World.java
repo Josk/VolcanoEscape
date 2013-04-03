@@ -50,13 +50,13 @@ public class World {
 		this.lavaOverlay.toFront();
 		
 		this.countBackGround = (int) (stage.getHeight() / BackGround.HEIGHT) + 3;
-		for(int i = 0; i < this.countBackGround; i++)
+		/*for(int i = 0; i < this.countBackGround; i++)
 		{
 			BackGround bgTmp = new BackGround(stage, 0, (int) (i*BackGround.HEIGHT));
 			stage.addActor(bgTmp);
 			this.backgrounds.add(bgTmp);
 			bgTmp.toBack();
-		}
+		}*/
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
