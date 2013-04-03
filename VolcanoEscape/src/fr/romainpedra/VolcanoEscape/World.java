@@ -188,7 +188,7 @@ public class World {
 		if(elapsedTime>timeNextChangeSpawnRate){
 			
 			spawnRockRate-=spawnModif;
-			System.out.println(spawnRockRate);
+//			System.out.println(spawnRockRate);
 			timeNextChangeSpawnRate=elapsedTime+changeSpawnRate;
 		}
 	}	
