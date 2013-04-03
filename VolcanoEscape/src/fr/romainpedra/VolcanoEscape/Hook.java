@@ -67,7 +67,7 @@ this.toFront();
 		}
 		
 		int nbChain=getNbChain(xP,yP,xH,yH);
-		System.out.println(nbChain);
+//		System.out.println(nbChain);
 		for(int i=0;i<nbChain;++i){
 			float x=lerp(((float)i/(float)nbChain),startPosX,endPosX);
 //			System.out.println(i/nbChain+" "+startPos+" "+EndPos+" "+x);
@@ -78,7 +78,7 @@ this.toFront();
 	}
 	
 	int getNbChain(float xP, float yP,float xH, float yH){
-		System.out.println((int)Math.sqrt(Math.pow((double)(xP-xH),2)+Math.pow((double)(yP-yH),2)));
+//		System.out.println((int)Math.sqrt(Math.pow((double)(xP-xH),2)+Math.pow((double)(yP-yH),2)));
 		return (int)Math.sqrt(Math.pow((double)(xP-xH),2)+Math.pow((double)(yP-yH),2))/chainSpace;
 	}
 	
