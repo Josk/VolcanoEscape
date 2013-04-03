@@ -22,7 +22,7 @@ public class Lava extends Actor{
 	
 	
 	public Lava(Stage stage,float x, float y, float width, float height){
-		this.indexSprite = 0;
+		
 		this.x = x;
 		this.y = y;
 		this.width = width;
