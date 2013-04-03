@@ -11,9 +11,13 @@ public class Hook extends Actor {
 	public float width=60, height=60;
 	public float widthChain=30, heightChain=30;
 	
+	public int chainSpace=10;
+	
 	public Player player;
 	
 	public Hook(Stage stage,Player player) {
+		
+		
 		rgn = new TextureRegion(Assets.get().rock);
 		
 		setSize(width, height);
@@ -33,6 +37,8 @@ public class Hook extends Actor {
 	
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
+////////////////////////
+this.toFront();
 		batch.draw(rgn, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
 				getHeight(), getScaleX(), getScaleY(), getRotation());
 		
@@ -49,21 +55,21 @@ public class Hook extends Actor {
 		float a=(yH-yP)/(xH-xP);
 		float b=yP-a*xP;
 		
-		float startPos, endPos;
+		float startPosX, endPosX;
 		
 		if(xP-xH<0){
-			startPos=xP;
-			endPos=xH;
+			startPosX=xP;
+			endPosX=xH;
 		}else{
-			startPos=xH;
-			endPos=xP;
+			startPosX=xH;
+			endPosX=xP;
 			
 		}
 		
-		int nbChain=getNbChain(startPos, endPos);
-		//System.out.println(nbChain);
+		int nbChain=getNbChain(xP,yP,xH,yH);
+//		System.out.println(nbChain);
 		for(int i=0;i<nbChain;++i){
-			float x=lerp(((float)i/(float)nbChain),startPos,endPos);
+			float x=lerp(((float)i/(float)nbChain),startPosX,endPosX);
 //			System.out.println(i/nbChain+" "+startPos+" "+EndPos+" "+x);
 			batch.draw(rgn, x-widthChain/2, a*x+b-heightChain/2, getOriginX(), getOriginY(), widthChain,
 					heightChain, 1, 1, getRotation());
@@ -71,8 +77,9 @@ public class Hook extends Actor {
 		}
 	}
 	
-	int getNbChain(float startPos, float endPos){
-		return (int)Math.sqrt(Math.pow((double)(startPos-endPos),2))/20;
+	int getNbChain(float xP, float yP,float xH, float yH){
+//		System.out.println((int)Math.sqrt(Math.pow((double)(xP-xH),2)+Math.pow((double)(yP-yH),2)));
+		return (int)Math.sqrt(Math.pow((double)(xP-xH),2)+Math.pow((double)(yP-yH),2))/chainSpace;
 	}
 	
 	public float lerp(float t,float start,float end){
