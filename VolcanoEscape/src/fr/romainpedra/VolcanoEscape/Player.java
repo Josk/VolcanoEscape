@@ -7,9 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class Player extends Actor {
 
-	TextureRegion rgn = new TextureRegion();
+	TextureRegion persoJumpL = new TextureRegion();
+	TextureRegion persoJumpR = new TextureRegion();
 	
-	TextureRegion rgn2 = new TextureRegion();
+	TextureRegion persoWaitL = new TextureRegion();
+	TextureRegion persoWaitR = new TextureRegion();
 	
 	TextureRegion rgnDebug = new TextureRegion();
 //	public float x = 50, y = 50;
@@ -35,9 +37,13 @@ public class Player extends Actor {
 		
 		
 		
-		rgn = new TextureRegion(Assets.get().perso);
+		persoJumpL = new TextureRegion(Assets.get().persoJumpL);
 		
-		rgn2 = new TextureRegion(Assets.get().persoWait);
+		persoWaitL = new TextureRegion(Assets.get().persoWaitL);
+		
+		persoJumpR = new TextureRegion(Assets.get().persoJumpR);
+		
+		persoWaitR = new TextureRegion(Assets.get().persoWaitR);
 		
 		rgnDebug = new TextureRegion(Assets.get().wall);
 		
@@ -163,11 +169,22 @@ public class Player extends Actor {
 //		batch.setColor(this.getColor());
 		
 		if(dirX==0&&dirY==0){
-			batch.draw(rgn2, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
-					getHeight(), getScaleX(), getScaleY(), getRotation());
+			if(hookedWall==1){
+				batch.draw(persoWaitL, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+						getHeight(), getScaleX(), getScaleY(), getRotation());
+			}else{
+				batch.draw(persoWaitR, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+						getHeight(), getScaleX(), getScaleY(), getRotation());
+			}
+			
 		}else{
-			batch.draw(rgn, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
-					getHeight(), getScaleX(), getScaleY(), getRotation());
+			if(hookedWall==1){
+				batch.draw(persoJumpL, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+						getHeight(), getScaleX(), getScaleY(), getRotation());
+			}else{
+				batch.draw(persoJumpR, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+						getHeight(), getScaleX(), getScaleY(), getRotation());
+			}
 		}
 		
 //		batch.draw(rgnDebug, getHitBoxX(), getHitBoxY(), getOriginX(), getOriginY(), getWidth(),
