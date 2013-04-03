@@ -49,12 +49,12 @@ public class World {
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
 		{
-			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT));
+			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT), Assets.get().wallLeft);
 			//wallTmp.toBack();
 			stage.addActor(wallTmp);
 			this.wallLeft.add(wallTmp);
 			
-			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT));
+			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT), Assets.get().wallRight);
 			//wallTmp.toBack();
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
@@ -111,7 +111,7 @@ public class World {
 				{
 					int y1 =  (int) wallLeft.get(wallLeft.size()-1).getY();
 					y1 += Wall.HEIGHT ;
-					Wall wallTmp1 = new Wall(stage, 0,y1);
+					Wall wallTmp1 = new Wall(stage, 0,y1, Assets.get().wallLeft);
 					//wallTmp1.toBack();
 					stage.addActor(wallTmp1);
 					this.wallLeft.add(wallTmp1);
@@ -151,7 +151,7 @@ public class World {
 				{
 					int y1 =  (int) wallRight.get(wallRight.size()-1).getY();
 					y1 += Wall.HEIGHT ;
-					Wall wallTmp1 = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH),y1);
+					Wall wallTmp1 = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH),y1, Assets.get().wallRight);
 					//wallTmp1.toBack();
 					stage.addActor(wallTmp1);
 					this.wallRight.add(wallTmp1);
