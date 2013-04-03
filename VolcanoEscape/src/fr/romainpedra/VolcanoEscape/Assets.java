@@ -12,7 +12,7 @@ import fr.romainpedra.VolcanoEscape.Assets;
 public class Assets {
 	
 	public Texture perso;
-	public Texture wall;
+	public Texture wall, wallLeft, wallRight;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
 	public Texture laveOverlaid;
@@ -44,6 +44,12 @@ public class Assets {
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		wallLeft = new Texture(Gdx.files.internal("data/Leftwall.png"));
+		wallLeft.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		wallRight = new Texture(Gdx.files.internal("data/Rightwall.png"));
+		wallRight.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
 		rock = new Texture(Gdx.files.internal("data/rock.png"));
 		rock.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
@@ -59,9 +65,13 @@ public class Assets {
 			perso.dispose();
 			perso = null;
 		}
-		if(wall != null){
-			wall.dispose();
-			wall = null;
+		if(wallLeft != null){
+			wallLeft.dispose();
+			wallLeft = null;
+		}
+		if(wallRight != null){
+			wallRight.dispose();
+			wallRight = null;
 		}
 		if(rock != null){
 			rock.dispose();

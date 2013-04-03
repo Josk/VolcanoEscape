@@ -1,5 +1,6 @@
 package fr.romainpedra.VolcanoEscape;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -22,8 +23,9 @@ public class Wall extends Actor {
 	public static final float WIDTH = 40;
 		
 	TextureRegion rgn = new TextureRegion();
-	public Wall(Stage stage,int x, int y){
-		rgn = new TextureRegion(Assets.get().wall);
+	public Wall(Stage stage,int x, int y, Texture texture){
+		//rgn = new TextureRegion(Assets.get().wall);
+		rgn = new TextureRegion(texture);
 		setSize(Wall.WIDTH,Wall.HEIGHT);
 		setOrigin(0,0);
 		setPosition(x,y);
