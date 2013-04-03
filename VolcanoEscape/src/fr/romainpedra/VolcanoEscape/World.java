@@ -85,8 +85,8 @@ public class World {
 		this.lavaOverlay.toFront();
 		stage.addActor(this.lava);
 		this.lava.toFront();
-		//Assets.get().music1.play();
-		//Assets.get().music1.setLooping(true);
+		Assets.get().music1.play();
+		Assets.get().music1.setLooping(true);
 		
 		
 	}
