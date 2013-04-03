@@ -1,5 +1,7 @@
 package fr.romainpedra.VolcanoEscape;
 
+import sun.org.mozilla.javascript.internal.ast.WithStatement;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -7,20 +9,22 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
 public class Hook extends Actor {
-	TextureRegion rgn = new TextureRegion();
-	public float width=60, height=60;
-	public float widthChain=30, heightChain=30;
+	TextureRegion hook = new TextureRegion();
+	TextureRegion chain = new TextureRegion();
+	public float width=120, height=120;
+	public float widthChain=60, heightChain=60;
 	
-	public int chainSpace=20;
+	public int chainSpace=10;
 	
 	public Player player;
 	
 	public Hook(Stage stage,Player player) {
 		
 		
-		rgn = new TextureRegion(Assets.get().rock);
-		
+		hook = new TextureRegion(Assets.get().hook);
+		chain = new TextureRegion(Assets.get().chain);
 		setSize(width, height);
+		setOrigin(width/2, height/2);
 		stage.addActor(this);
 		
 		this.player=player;
@@ -30,16 +34,16 @@ public class Hook extends Actor {
 		setPosition(this.getX(), this.getY() - speedScroll* Delta);
 	}
 	
-	public void Hooked(float x, float y){
+	public void Hooked(float x, float y, float degrees){
 		setPosition(x, y);
-		
+		//setRotation(degrees);
 	}
 	
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 ////////////////////////
-//this.toFront();
-		batch.draw(rgn, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+this.toFront();
+		batch.draw(hook, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
 				getHeight(), getScaleX(), getScaleY(), getRotation());
 		
 //		float xP=100;//player.getX();
@@ -71,7 +75,7 @@ public class Hook extends Actor {
 		for(int i=0;i<nbChain;++i){
 			float x=lerp(((float)i/(float)nbChain),startPosX,endPosX);
 //			System.out.println(i/nbChain+" "+startPos+" "+EndPos+" "+x);
-			batch.draw(rgn, x-widthChain/2, a*x+b-heightChain/2, getOriginX(), getOriginY(), widthChain,
+			batch.draw(chain, x-widthChain/2, a*x+b-heightChain/2, getOriginX(), getOriginY(), widthChain,
 					heightChain, 1, 1, getRotation());
 			
 		}
