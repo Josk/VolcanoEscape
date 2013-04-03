@@ -49,8 +49,8 @@ public class Assets {
 		
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
 		
-		/*laveOverlaid = new Texture(Gdx.files.internal("data/overlay.png"));
-		laveOverlaid.setFilter(TextureFilter.Linear, TextureFilter.Linear);*/
+		laveOverlaid = new Texture(Gdx.files.internal("data/overlay.png"));
+		laveOverlaid.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
 	public void dispose(){
@@ -90,6 +90,10 @@ public class Assets {
 		if(lave6 != null){
 			lave6.dispose();
 			lave6 = null;
+		}
+		if(laveOverlaid != null){
+			laveOverlaid.dispose();
+			laveOverlaid = null;
 		}
 		if(background != null){
 			background.dispose();

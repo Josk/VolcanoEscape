@@ -17,6 +17,7 @@ public class World {
 	private int countWall;
 //	private int posY;
 	private Lava lava;
+	private LavaOverlay lavaOverlay;
 	
 	private float spawnRockRateStart=2f;//5
 	private float spawnRockRate=2f; 
@@ -42,6 +43,8 @@ public class World {
 		this.lava = new Lava(stage, 0, 0,stage.getWidth() , 110);
 		this.lava.toFront();
 		
+		this.lavaOverlay = new LavaOverlay(stage, 0, 0, (int)stage.getWidth(), (int)stage.getHeight());
+		this.lavaOverlay.toFront();
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
@@ -57,6 +60,8 @@ public class World {
 			this.wallRight.add(wallTmp);
 			//wallTmp.setZIndex(5);
 		}
+		stage.addActor(this.lavaOverlay);
+		this.lavaOverlay.toFront();
 		stage.addActor(this.lava);
 		this.lava.toFront();
 		Assets.get().music1.play();
@@ -111,6 +116,7 @@ public class World {
 					stage.addActor(wallTmp1);
 					this.wallLeft.add(wallTmp1);
 					//wallTmp1.setZIndex(5);
+					this.lavaOverlay.toFront();
 					this.lava.toFront();
 					
 				}
@@ -150,7 +156,8 @@ public class World {
 					stage.addActor(wallTmp1);
 					this.wallRight.add(wallTmp1);
 					//wallTmp1.setZIndex(5);
-					//this.lava.to
+					this.lavaOverlay.toFront();
+					this.lava.toFront();
 					
 				}
 			}
