@@ -1,9 +1,11 @@
 package fr.romainpedra.VolcanoEscape;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.text.Position;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class World {
@@ -49,14 +51,24 @@ public class World {
 		this.lavaOverlay = new LavaOverlay(stage, 0, 0, (int)stage.getWidth(), (int)stage.getHeight());
 		this.lavaOverlay.toFront();
 		
-		this.countBackGround = (int) (stage.getHeight() / BackGround.HEIGHT) + 3;
-		/*for(int i = 0; i < this.countBackGround; i++)
+		this.countBackGround = 8;
+		for(int i = 0; i < this.countBackGround; i++)
 		{
-			BackGround bgTmp = new BackGround(stage, 0, (int) (i*BackGround.HEIGHT));
+			BackGround bgTmp;
+			if(i == 0)
+			{
+				bgTmp = new BackGround(stage, 0, (int) (i*BackGround.HEIGHT), MathUtils.random(1, 3));
+			}
+			//
+			else
+			{
+				bgTmp = new BackGround(stage, 0,(int)(i*this.backgrounds.get(i -1).GetSizeY())  , MathUtils.random(1, 3));
+			}
+			
 			stage.addActor(bgTmp);
 			this.backgrounds.add(bgTmp);
 			bgTmp.toBack();
-		}*/
+		}
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
@@ -89,6 +101,48 @@ public class World {
 		this.player.hook.update(speedScroll, delta);
 //		}
 		
+		
+		for(int i  = 0; i<backgrounds.size(); i++)
+		{
+			BackGround bgTmp = backgrounds.get(i);
+			
+			
+			//Defilement 
+			bgTmp.setPosition(bgTmp.getX(), bgTmp.getY() - (speedScroll *delta)/5);
+			
+			//Si un mur sort de l'ecran
+			if(bgTmp.getY()< -1 * bgTmp.GetSizeY())
+			{
+				bgTmp.remove();
+				backgrounds.remove(i);
+				i -= 1;
+				if(i < 0)
+				{
+					i = 0;
+				}
+			}
+			
+			//si le nombre de mur est inferieur au nombre de mur a afficher
+			if(backgrounds.size() < this.countBackGround)
+			{
+				int count = this.countBackGround - backgrounds.size();
+				for(int y = 0; y<count; y++)
+				{
+					int y1 =  (int) backgrounds.get(backgrounds.size()-1).getY();
+					y1 +=(int) backgrounds.get(backgrounds.size()-1).GetSizeY() * 2;
+					
+					BackGround bgTmp1 = new BackGround(stage, 0,y1,MathUtils.random(1, 3));
+					
+					stage.addActor(bgTmp1);
+					bgTmp1.toBack();
+					this.backgrounds.add(bgTmp1);
+					//wallTmp1.setZIndex(5);
+					//this.lavaOverlay.toFront();
+					//this.lava.toFront();
+					
+				}
+			}
+		}
 		
 		
 		//Deflilement du mur de Gauche

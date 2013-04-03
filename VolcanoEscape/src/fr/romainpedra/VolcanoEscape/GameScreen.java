@@ -99,7 +99,7 @@ public class GameScreen implements Screen {
 	public void render(float delta) {	
 		update(delta);
 		
-		Gdx.gl.glClearColor(0.03f, 0.0f, 0.04f, 1.0f);
+		Gdx.gl.glClearColor(6f/255f, 1f/255f, 11f/255f, 1.0f);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		
