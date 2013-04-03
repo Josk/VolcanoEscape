@@ -15,7 +15,7 @@ public class Assets {
 	public Texture wall, wallLeft, wallRight;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
-	public Texture laveOverlaid;
+	public Texture laveOverlaid1, laveOverlaid2, laveOverlaid3, laveOverlaid4, laveOverlaid5, laveOverlaid6;
 	public Texture background;
 	public Music music1;
 	
@@ -55,8 +55,23 @@ public class Assets {
 		
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
 		
-		laveOverlaid = new Texture(Gdx.files.internal("data/overlay.png"));
-		laveOverlaid.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		laveOverlaid1 = new Texture(Gdx.files.internal("data/overlay1.png"));
+		laveOverlaid1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid2 = new Texture(Gdx.files.internal("data/overlay2.png"));
+		laveOverlaid2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid3 = new Texture(Gdx.files.internal("data/overlay3.png"));
+		laveOverlaid3.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid4 = new Texture(Gdx.files.internal("data/overlay4.png"));
+		laveOverlaid4.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid5 = new Texture(Gdx.files.internal("data/overlay5.png"));
+		laveOverlaid5.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid6 = new Texture(Gdx.files.internal("data/overlay6.png"));
+		laveOverlaid6.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
 	public void dispose(){
@@ -101,9 +116,29 @@ public class Assets {
 			lave6.dispose();
 			lave6 = null;
 		}
-		if(laveOverlaid != null){
-			laveOverlaid.dispose();
-			laveOverlaid = null;
+		if(laveOverlaid1 != null){
+			laveOverlaid1.dispose();
+			laveOverlaid1 = null;
+		}
+		if(laveOverlaid2 != null){
+			laveOverlaid2.dispose();
+			laveOverlaid2 = null;
+		}
+		if(laveOverlaid3 != null){
+			laveOverlaid3.dispose();
+			laveOverlaid3 = null;
+		}
+		if(laveOverlaid4 != null){
+			laveOverlaid4.dispose();
+			laveOverlaid4 = null;
+		}
+		if(laveOverlaid5 != null){
+			laveOverlaid5.dispose();
+			laveOverlaid5 = null;
+		}
+		if(laveOverlaid6 != null){
+			laveOverlaid6.dispose();
+			laveOverlaid6 = null;
 		}
 		if(background != null){
 			background.dispose();

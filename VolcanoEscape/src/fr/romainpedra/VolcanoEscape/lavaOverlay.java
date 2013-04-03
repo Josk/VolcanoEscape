@@ -1,5 +1,7 @@
 package fr.romainpedra.VolcanoEscape;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -13,23 +15,62 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
 
 public class LavaOverlay extends Actor {
 	
+	ArrayList<TextureRegion> overlayTextures;
 	public int x;
 	public int y;
 	public int sizeX;
 	public int sizeY;
+	float speedSprite;
+	private int indexSprite;
+	private float timeTmp;
+	private boolean invert;
 	
-	//public static final float HEIGHT = 200;
-	//public static final float WIDTH = 40;
-		
-	TextureRegion rgn = new TextureRegion();
 	public LavaOverlay(Stage stage,int x, int y, int sizeX, int sizeY){
-		rgn = new TextureRegion(Assets.get().laveOverlaid);
 		setSize(sizeX,sizeY);
 		setOrigin(0,0);
 		setPosition(x,y);
+		this.speedSprite =2f;
+		this.timeTmp = 0;
+		this.invert = false;	
+		this.indexSprite = 0;
+		
+		overlayTextures = new ArrayList<TextureRegion>();
+		
+		overlayTextures.add(new TextureRegion(Assets.get().laveOverlaid1));
+		overlayTextures.add(new TextureRegion(Assets.get().laveOverlaid2));
+		overlayTextures.add(new TextureRegion(Assets.get().laveOverlaid3));
+		overlayTextures.add(new TextureRegion(Assets.get().laveOverlaid4));
+		overlayTextures.add(new TextureRegion(Assets.get().laveOverlaid5));
+		overlayTextures.add(new TextureRegion(Assets.get().laveOverlaid6));
+		this.toFront();	
 	}
 	
 	public void draw(SpriteBatch batch, float parentAlpha){
-		batch.draw(rgn,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());		
+		this.timeTmp += 0.1f;
+		if(this.timeTmp >= this.speedSprite)
+		{
+			this.timeTmp = 0;
+			if(invert)
+			{
+				this.indexSprite --;
+				if(indexSprite < 0)
+				{
+					this.indexSprite = 1;
+					invert = false;
+				}
+			}
+			else
+			{
+				this.indexSprite ++;
+				if(indexSprite == this.overlayTextures.size())
+				{
+					this.indexSprite = this.overlayTextures.size() -2;
+					invert = true;
+				}
+			}
+			
+		}
+		//this.setZIndex(10);
+		batch.draw(overlayTextures.get(this.indexSprite),getX() ,getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
 	}
 }

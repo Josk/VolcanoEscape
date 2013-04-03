@@ -55,10 +55,8 @@ public class World {
 			this.wallLeft.add(wallTmp);
 			
 			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT), Assets.get().wallRight);
-			//wallTmp.toBack();
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
-			//wallTmp.setZIndex(5);
 		}
 		stage.addActor(this.lavaOverlay);
 		this.lavaOverlay.toFront();
