@@ -19,7 +19,7 @@ public class Assets {
 	public Music music1;
 	
 	public void load(){
-		perso = new Texture(Gdx.files.internal("data/enemi.png"));
+		perso = new Texture(Gdx.files.internal("data/heroJump.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		lave1 = new Texture(Gdx.files.internal("data/lava1.png"));
