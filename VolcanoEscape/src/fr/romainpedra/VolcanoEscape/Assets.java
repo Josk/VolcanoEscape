@@ -12,9 +12,10 @@ import fr.romainpedra.VolcanoEscape.Assets;
 public class Assets {
 	
 	public Texture perso;
-	public Texture wall;
+	public Texture wall, wallLeft, wallRight;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
+	public Texture laveOverlaid1, laveOverlaid2, laveOverlaid3, laveOverlaid4, laveOverlaid5, laveOverlaid6;
 	public Texture background;
 	public Music music1;
 	
@@ -43,13 +44,34 @@ public class Assets {
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		wallLeft = new Texture(Gdx.files.internal("data/Leftwall.png"));
+		wallLeft.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		wallRight = new Texture(Gdx.files.internal("data/Rightwall.png"));
+		wallRight.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
 		rock = new Texture(Gdx.files.internal("data/rock.png"));
 		rock.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
 		
+		laveOverlaid1 = new Texture(Gdx.files.internal("data/overlay1.png"));
+		laveOverlaid1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		laveOverlaid2 = new Texture(Gdx.files.internal("data/overlay2.png"));
+		laveOverlaid2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
+		laveOverlaid3 = new Texture(Gdx.files.internal("data/overlay3.png"));
+		laveOverlaid3.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid4 = new Texture(Gdx.files.internal("data/overlay4.png"));
+		laveOverlaid4.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid5 = new Texture(Gdx.files.internal("data/overlay5.png"));
+		laveOverlaid5.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		laveOverlaid6 = new Texture(Gdx.files.internal("data/overlay6.png"));
+		laveOverlaid6.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
 	public void dispose(){
@@ -58,9 +80,13 @@ public class Assets {
 			perso.dispose();
 			perso = null;
 		}
-		if(wall != null){
-			wall.dispose();
-			wall = null;
+		if(wallLeft != null){
+			wallLeft.dispose();
+			wallLeft = null;
+		}
+		if(wallRight != null){
+			wallRight.dispose();
+			wallRight = null;
 		}
 		if(rock != null){
 			rock.dispose();
@@ -89,6 +115,30 @@ public class Assets {
 		if(lave6 != null){
 			lave6.dispose();
 			lave6 = null;
+		}
+		if(laveOverlaid1 != null){
+			laveOverlaid1.dispose();
+			laveOverlaid1 = null;
+		}
+		if(laveOverlaid2 != null){
+			laveOverlaid2.dispose();
+			laveOverlaid2 = null;
+		}
+		if(laveOverlaid3 != null){
+			laveOverlaid3.dispose();
+			laveOverlaid3 = null;
+		}
+		if(laveOverlaid4 != null){
+			laveOverlaid4.dispose();
+			laveOverlaid4 = null;
+		}
+		if(laveOverlaid5 != null){
+			laveOverlaid5.dispose();
+			laveOverlaid5 = null;
+		}
+		if(laveOverlaid6 != null){
+			laveOverlaid6.dispose();
+			laveOverlaid6 = null;
 		}
 		if(background != null){
 			background.dispose();

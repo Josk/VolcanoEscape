@@ -61,6 +61,7 @@ public class Rock extends Actor {
 	
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha){
+		//this.setZIndex(5);
 		batch.draw(rgn,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
 //		batch.draw(rgnDebug, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
 //				getHeight(), width/getWidth(),height/getHeight()/*getScaleX(), getScaleY()*/, 0);

@@ -17,6 +17,7 @@ public class World {
 	private int countWall;
 //	private int posY;
 	private Lava lava;
+	private LavaOverlay lavaOverlay;
 	
 	private float spawnRockRateStart=2f;//5
 	private float spawnRockRate=2f; 
@@ -39,21 +40,28 @@ public class World {
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
 		
+		this.lava = new Lava(stage, 0, 0,stage.getWidth() , 110);
+		this.lava.toFront();
 		
-		this.lava = new Lava(stage, 0, 10,stage.getWidth() , 100);
-		stage.addActor(this.lava);
+		this.lavaOverlay = new LavaOverlay(stage, 0, 0, (int)stage.getWidth(), (int)stage.getHeight());
+		this.lavaOverlay.toFront();
 		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
 		{
-			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT));
+			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT), Assets.get().wallLeft);
+			//wallTmp.toBack();
 			stage.addActor(wallTmp);
-			this.wallLeft.add(wallTmp); 
+			this.wallLeft.add(wallTmp);
 			
-			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT));
+			wallTmp = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH), (int)(i*Wall.HEIGHT), Assets.get().wallRight);
 			stage.addActor(wallTmp);
 			this.wallRight.add(wallTmp);
 		}
+		stage.addActor(this.lavaOverlay);
+		this.lavaOverlay.toFront();
+		stage.addActor(this.lava);
+		this.lava.toFront();
 		Assets.get().music1.play();
 		Assets.get().music1.setLooping(true);
 		
@@ -101,9 +109,14 @@ public class World {
 				{
 					int y1 =  (int) wallLeft.get(wallLeft.size()-1).getY();
 					y1 += Wall.HEIGHT ;
-					Wall wallTmp1 = new Wall(stage, 0,y1);
+					Wall wallTmp1 = new Wall(stage, 0,y1, Assets.get().wallLeft);
+					//wallTmp1.toBack();
 					stage.addActor(wallTmp1);
-					this.wallLeft.add(wallTmp1); 
+					this.wallLeft.add(wallTmp1);
+					//wallTmp1.setZIndex(5);
+					this.lavaOverlay.toFront();
+					this.lava.toFront();
+					
 				}
 			}
 		}
@@ -136,9 +149,14 @@ public class World {
 				{
 					int y1 =  (int) wallRight.get(wallRight.size()-1).getY();
 					y1 += Wall.HEIGHT ;
-					Wall wallTmp1 = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH),y1);
+					Wall wallTmp1 = new Wall(stage, (int)(stage.getWidth()- Wall.WIDTH),y1, Assets.get().wallRight);
+					//wallTmp1.toBack();
 					stage.addActor(wallTmp1);
-					this.wallRight.add(wallTmp1); 
+					this.wallRight.add(wallTmp1);
+					//wallTmp1.setZIndex(5);
+					this.lavaOverlay.toFront();
+					this.lava.toFront();
+					
 				}
 			}
 		}

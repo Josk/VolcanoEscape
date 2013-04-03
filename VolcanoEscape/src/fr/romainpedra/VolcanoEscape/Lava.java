@@ -22,7 +22,7 @@ public class Lava extends Actor{
 	
 	
 	public Lava(Stage stage,float x, float y, float width, float height){
-		this.indexSprite = 0;
+		
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -44,6 +44,7 @@ public class Lava extends Actor{
 		lavaTexture.add(new TextureRegion(Assets.get().lave4));
 		lavaTexture.add(new TextureRegion(Assets.get().lave5));
 		lavaTexture.add(new TextureRegion(Assets.get().lave6));
+		this.toFront();
 		
 	}
 	
@@ -74,6 +75,7 @@ public class Lava extends Actor{
 			}
 			
 		}
+		//this.setZIndex(10);
 		batch.draw(lavaTexture.get(this.indexSprite),getX() ,getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
 	}
 }
