@@ -81,7 +81,7 @@ public class Player extends Actor {
 					return;
 				}else{
 					this.hookedWall=2;
-					x=this.widthStage-hook.height;
+					x=this.widthStage-hook.width/2-wallSize;
 //					System.out.println("L ok");
 				}
 				break;
@@ -92,7 +92,7 @@ public class Player extends Actor {
 					return;
 				}else{
 					this.hookedWall=1;
-					x=0;
+					x=wallSize-hook.width/2;
 //					System.out.println("R ok");
 				}
 				break;
