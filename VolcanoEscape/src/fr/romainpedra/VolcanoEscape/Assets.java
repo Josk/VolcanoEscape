@@ -25,7 +25,7 @@ public class Assets {
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
 	public Texture laveOverlaid1, laveOverlaid2, laveOverlaid3, laveOverlaid4, laveOverlaid5, laveOverlaid6;
-	public Texture background;
+	public Texture background1, background2, background3;
 	public Music music1;
 	public FileHandle font;
 	public FileHandle fontImg;
@@ -82,29 +82,35 @@ public class Assets {
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
 		
 		laveOverlaid1 = new Texture(Gdx.files.internal("data/overlay1.png"));
-		laveOverlaid1.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		laveOverlaid1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		laveOverlaid2 = new Texture(Gdx.files.internal("data/overlay2.png"));
-		laveOverlaid2.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		laveOverlaid2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		laveOverlaid3 = new Texture(Gdx.files.internal("data/overlay3.png"));
-		laveOverlaid3.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		laveOverlaid3.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		laveOverlaid4 = new Texture(Gdx.files.internal("data/overlay4.png"));
-		laveOverlaid4.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		laveOverlaid4.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		laveOverlaid5 = new Texture(Gdx.files.internal("data/overlay5.png"));
-		laveOverlaid5.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		laveOverlaid5.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		laveOverlaid6 = new Texture(Gdx.files.internal("data/overlay6.png"));
-		laveOverlaid6.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		laveOverlaid6.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
 		font = Gdx.files.internal("data/fonts/font.fnt");
 
 		fontImg = Gdx.files.internal("data/fonts/font.png");
 		
-		background = new Texture(Gdx.files.internal("data/background.png"));
-		background.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		background1 = new Texture(Gdx.files.internal("data/background1.png"));
+		background1.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		background2 = new Texture(Gdx.files.internal("data/background2.png"));
+		background2.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		background3 = new Texture(Gdx.files.internal("data/background3.png"));
+		background3.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 	}
 	
 	public void dispose(){
@@ -173,10 +179,18 @@ public class Assets {
 			laveOverlaid6.dispose();
 			laveOverlaid6 = null;
 		}
-		if(background != null){
-			background.dispose();
-			background = null;
-		}
+		if(background1 != null){
+			background1.dispose();
+			background1 = null;
+		}	
+		if(background2 != null){
+			background2.dispose();
+			background2 = null;
+		}		
+		if(background3 != null){
+			background3.dispose();
+			background3 = null;
+		}		
 		if(music1 != null){
 			music1.dispose();
 			music1 = null;
