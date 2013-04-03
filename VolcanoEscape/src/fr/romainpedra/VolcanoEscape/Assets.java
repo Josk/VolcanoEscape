@@ -12,6 +12,7 @@ import fr.romainpedra.VolcanoEscape.Assets;
 public class Assets {
 	
 	public Texture perso;
+	public Texture persoWait;
 	public Texture wall, wallLeft, wallRight;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
@@ -22,6 +23,9 @@ public class Assets {
 	public void load(){
 		perso = new Texture(Gdx.files.internal("data/heroJump.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		persoWait = new Texture(Gdx.files.internal("data/heroWait.png"));
+		persoWait.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		lave1 = new Texture(Gdx.files.internal("data/lava1.png"));
 		lave1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
