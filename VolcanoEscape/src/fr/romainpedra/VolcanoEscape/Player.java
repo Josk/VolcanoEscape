@@ -32,6 +32,9 @@ public class Player extends Actor {
 	public Hook hook;
 	
 	public Player(Stage stage) {
+		
+		
+		
 		rgn = new TextureRegion(Assets.get().perso);
 		
 		rgn2 = new TextureRegion(Assets.get().persoWait);
@@ -51,7 +54,7 @@ public class Player extends Actor {
 	public void init(){
 		setSize(widthAsset, heightAsset);
 //		setOrigin(width/2, height/2);
-		setPosition(wallSize-width/2, heightStage/2);
+		setPosition(wallSize-widthAsset/2, heightStage/2);
 		
 		hook.Hooked(wallSize-width/2-10, heightStage/2+50);
 		
@@ -72,7 +75,7 @@ public class Player extends Actor {
 					return;
 				}else{
 					this.hookedWall=2;
-					x=this.widthStage;
+					x=this.widthStage-hook.height;
 //					System.out.println("L ok");
 				}
 				break;
@@ -123,6 +126,13 @@ public class Player extends Actor {
 		else {
 			this.dirX = 0;
 			this.dirY = 0;
+			if(this.hookedWall==1){
+				this.setX(wallSize-widthAsset/2);
+			}else{
+				this.setX(this.widthStage-this.widthAsset/2-wallSize);
+			}
+			
+			
 //			this.dirX *= -1;
 			// this.dirX=0;
 		}
@@ -148,6 +158,8 @@ public class Player extends Actor {
 	}
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
+////////////////////////
+//this.toFront();
 //		batch.setColor(this.getColor());
 		
 		if(dirX==0&&dirY==0){
