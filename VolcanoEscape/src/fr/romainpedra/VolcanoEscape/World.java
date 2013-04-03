@@ -36,7 +36,7 @@ public class World {
 		this.scene = stage;
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
-		
+
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
 		
