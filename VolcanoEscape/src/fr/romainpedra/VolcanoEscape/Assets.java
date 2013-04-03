@@ -31,22 +31,22 @@ public class Assets {
 		persoWait.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		lave1 = new Texture(Gdx.files.internal("data/lava1.png"));
-		lave1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave1.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave2 = new Texture(Gdx.files.internal("data/lava2.png"));
-		lave2.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave2.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave3 = new Texture(Gdx.files.internal("data/lava3.png"));
-		lave3.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave3.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave4 = new Texture(Gdx.files.internal("data/lava4.png"));
-		lave4.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave4.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave5 = new Texture(Gdx.files.internal("data/lava5.png"));
-		lave5.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave5.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave6 = new Texture(Gdx.files.internal("data/lava6.png"));
-		lave6.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		lave6.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -83,6 +83,9 @@ public class Assets {
 		font = Gdx.files.internal("data/fonts/font.fnt");
 
 		fontImg = Gdx.files.internal("data/fonts/font.png");
+		
+		background = new Texture(Gdx.files.internal("data/background.png"));
+		background.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 	}
 	
 	public void dispose(){

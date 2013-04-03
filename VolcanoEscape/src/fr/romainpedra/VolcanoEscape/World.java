@@ -12,9 +12,11 @@ public class World {
 	public float speedScroll; //Vitesse de defilement du terrain
 	private ArrayList<Wall> wallRight; //paroies de droite du terrain
 	private ArrayList<Wall> wallLeft; //paroies de gauche du terrain
+	private ArrayList<BackGround> backgrounds;
 	private Stage scene;
 	private Player player;
 	private int countWall;
+	private int countBackGround;
 //	private int posY;
 	private Lava lava;
 	private LavaOverlay lavaOverlay;
@@ -36,6 +38,7 @@ public class World {
 		this.scene = stage;
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
+		this.backgrounds = new ArrayList<BackGround>();
 		
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
@@ -46,11 +49,19 @@ public class World {
 		this.lavaOverlay = new LavaOverlay(stage, 0, 0, (int)stage.getWidth(), (int)stage.getHeight());
 		this.lavaOverlay.toFront();
 		
+		this.countBackGround = (int) (stage.getHeight() / BackGround.HEIGHT) + 3;
+		for(int i = 0; i < this.countBackGround; i++)
+		{
+			BackGround bgTmp = new BackGround(stage, 0, (int) (i*BackGround.HEIGHT));
+			stage.addActor(bgTmp);
+			this.backgrounds.add(bgTmp);
+			bgTmp.toBack();
+		}
+		
 		this.countWall = (int) (stage.getHeight() / Wall.HEIGHT) + 3 ;
 		for(int i = 0; i < countWall; i++)
 		{
 			Wall wallTmp = new Wall(stage, 0, (int)(i*Wall.HEIGHT), Assets.get().wallLeft);
-			//wallTmp.toBack();
 			stage.addActor(wallTmp);
 			this.wallLeft.add(wallTmp);
 			
@@ -62,8 +73,8 @@ public class World {
 		this.lavaOverlay.toFront();
 		stage.addActor(this.lava);
 		this.lava.toFront();
-		Assets.get().music1.play();
-		Assets.get().music1.setLooping(true);
+		//Assets.get().music1.play();
+		//Assets.get().music1.setLooping(true);
 		
 		
 	}
