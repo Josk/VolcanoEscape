@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 public class Hook extends Actor {
 	TextureRegion rgn = new TextureRegion();
 	public float width=60, height=60;
+	public float widthChain=30, heightChain=30;
 	
 	public Player player;
 	
@@ -42,8 +43,8 @@ public class Hook extends Actor {
 
 		float xP=player.getX()+player.widthAsset/2;
 		float yP=player.getY()+player.heightAsset/2;
-		float xH=getX();
-		float yH=getY();
+		float xH=getX()+width/2;
+		float yH=getY()+height/2;
 		
 		float a=(yH-yP)/(xH-xP);
 		float b=yP-a*xP;
@@ -64,8 +65,8 @@ public class Hook extends Actor {
 		for(int i=0;i<nbChain;++i){
 			float x=lerp(((float)i/(float)nbChain),startPos,endPos);
 //			System.out.println(i/nbChain+" "+startPos+" "+EndPos+" "+x);
-			batch.draw(rgn, x, a*x+b, getOriginX(), getOriginY(), getWidth(),
-					getHeight(), 0.5f, 0.5f, getRotation());
+			batch.draw(rgn, x-widthChain/2, a*x+b-heightChain/2, getOriginX(), getOriginY(), widthChain,
+					heightChain, 1, 1, getRotation());
 			
 		}
 	}

@@ -13,6 +13,7 @@ import fr.romainpedra.VolcanoEscape.Assets;
 public class Assets {
 	
 	public Texture perso;
+	public Texture persoWait;
 	public Texture wall, wallLeft, wallRight;
 	public Texture rock;
 	public Texture lave1, lave2, lave3, lave4, lave5, lave6;
@@ -23,8 +24,11 @@ public class Assets {
 	public FileHandle fontImg;
 	
 	public void load(){
-		perso = new Texture(Gdx.files.internal("data/enemi.png"));
+		perso = new Texture(Gdx.files.internal("data/heroJump.png"));
 		perso.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		persoWait = new Texture(Gdx.files.internal("data/heroWait.png"));
+		persoWait.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		lave1 = new Texture(Gdx.files.internal("data/lava1.png"));
 		lave1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -47,10 +51,10 @@ public class Assets {
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		wallLeft = new Texture(Gdx.files.internal("data/Leftwall.png"));
+		wallLeft = new Texture(Gdx.files.internal("data/LeftWall.png"));
 		wallLeft.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		wallRight = new Texture(Gdx.files.internal("data/Rightwall.png"));
+		wallRight = new Texture(Gdx.files.internal("data/RightWall.png"));
 		wallRight.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		rock = new Texture(Gdx.files.internal("data/rock.png"));

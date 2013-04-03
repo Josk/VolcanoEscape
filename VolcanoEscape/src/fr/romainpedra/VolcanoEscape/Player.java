@@ -9,6 +9,8 @@ public class Player extends Actor {
 
 	TextureRegion rgn = new TextureRegion();
 	
+	TextureRegion rgn2 = new TextureRegion();
+	
 	TextureRegion rgnDebug = new TextureRegion();
 //	public float x = 50, y = 50;
 //	private float gravity = 0;
@@ -17,7 +19,7 @@ public class Player extends Actor {
 	
 	public float hookSpeed=4f;
 	public float widthStage, heightStage;
-	public float widthAsset=128, heightAsset=128;
+	public float widthAsset=150, heightAsset=150;//128
 	public float width=60, height=60;
 	public float dirX, dirY;
 	
@@ -31,6 +33,9 @@ public class Player extends Actor {
 	
 	public Player(Stage stage) {
 		rgn = new TextureRegion(Assets.get().perso);
+		
+		rgn2 = new TextureRegion(Assets.get().persoWait);
+		
 		rgnDebug = new TextureRegion(Assets.get().wall);
 		
 		this.widthStage = stage.getWidth();
@@ -144,8 +149,15 @@ public class Player extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 //		batch.setColor(this.getColor());
-		batch.draw(rgn, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
-				getHeight(), getScaleX(), getScaleY(), getRotation());
+		
+		if(dirX==0&&dirY==0){
+			batch.draw(rgn2, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+					getHeight(), getScaleX(), getScaleY(), getRotation());
+		}else{
+			batch.draw(rgn, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
+					getHeight(), getScaleX(), getScaleY(), getRotation());
+		}
+		
 //		batch.draw(rgnDebug, getHitBoxX(), getHitBoxY(), getOriginX(), getOriginY(), getWidth(),
 //				getHeight(), width/getWidth(),height/getHeight()/*getScaleX(), getScaleY()*/, getRotation());
 		
