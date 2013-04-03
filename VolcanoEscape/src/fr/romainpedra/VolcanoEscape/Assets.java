@@ -44,10 +44,10 @@ public class Assets {
 		wall = new Texture(Gdx.files.internal("data/wall.png"));
 		wall.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		wallLeft = new Texture(Gdx.files.internal("data/Leftwall.png"));
+		wallLeft = new Texture(Gdx.files.internal("data/LeftWall.png"));
 		wallLeft.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		wallRight = new Texture(Gdx.files.internal("data/Rightwall.png"));
+		wallRight = new Texture(Gdx.files.internal("data/RightWall.png"));
 		wallRight.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		rock = new Texture(Gdx.files.internal("data/rock.png"));
