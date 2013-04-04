@@ -29,7 +29,8 @@ public class Rock extends Actor {
 		setOrigin(this.width/2,this.height/2);
 		
 		this.player = player;
-		float x = (random.nextFloat() *stage.getWidth());
+		
+		float x = (100+random.nextFloat() *(stage.getWidth()-width-100));
 		
 		////////////////////////////
 //		setPosition(stage.getWidth()/2,this.height);

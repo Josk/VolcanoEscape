@@ -29,6 +29,7 @@ public class World {
 	private LavaOverlay lavaOverlay;
 	
 	private float spawnRockRateStart=2f;//5
+	private float spawnRockRateMin=0.5f;
 	private float spawnRockRate=2f; 
 	private float timeNextSpawn=2f;
 	
@@ -82,8 +83,6 @@ public class World {
 		this.lavaOverlay.toFront();
 		stage.addActor(this.lava);
 		this.lava.toFront();
-		//Assets.get().music1.play();
-		//Assets.get().music1.setLooping(true);
 		
 		
 	}
@@ -241,6 +240,7 @@ public class World {
 			//System.out.println("X: "+ this.rocks.get(i).getX());
 			if(rTmp.getY() <= this.lava.getY() + 60)
 			{
+				Assets.get().lavanoise.play(0.5f);
 				ParticleEffect particule = new ParticleEffect();
 				particule.load(Gdx.files.internal("data/Particles/flame2.p"), 
 			    Gdx.files.internal("data"));
@@ -287,7 +287,7 @@ public class World {
 			timeNextSpawn=elapsedTime+spawnRockRate;
 		}
 		
-		if(elapsedTime>timeNextChangeSpawnRate){
+		if(spawnRockRate>spawnRockRateMin&&elapsedTime>timeNextChangeSpawnRate){
 			
 			spawnRockRate-=spawnModif;
 //			System.out.println(spawnRockRate);
@@ -308,6 +308,8 @@ public class World {
 	}
 	
 	void gameOver(){
+		Assets.get().music1.stop();
+		Assets.get().death.play();
 		for(int i=0; i<this.rocks.size();i++){
 			this.rocks.get(i).remove();
 		}
