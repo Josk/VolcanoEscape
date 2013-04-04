@@ -27,6 +27,7 @@ public class GameScreen implements Screen {
 //	private int lives = 3;
 	private BitmapFont font;
 	private SpriteBatch fontBatch;
+	private SpriteBatch particuleBatch;
 	private Label scoreLabel;
 	
 	private static final int WIDTH = 800;
@@ -53,7 +54,7 @@ public class GameScreen implements Screen {
 		font = new BitmapFont(Assets.get().font,Assets.get().fontImg,false);
 		font.setScale(0.5f,0.5f);
 		fontBatch = new SpriteBatch();
-		
+		particuleBatch = new SpriteBatch();
 		player = new Player(scene);
 		world = new World(scene, 400f, player);
 		
@@ -122,16 +123,15 @@ public class GameScreen implements Screen {
 		// rendu des elements ajoutes a la scene
 		scene.draw();
 		
-		SpriteBatch batch = new SpriteBatch();
+	
 		for(int i =0; i< this.world.particules.size(); i++)
 		{
 			ParticleEffect pTmp = this.world.particules.get(i);
 			if(! pTmp.isComplete())
 			{
-				//System.out.println("kjhgfdsdfghjkjhgdsdfghjkjhgfdsdcfgbnj,k;");
-				batch.begin();
-				pTmp.draw(batch, delta);
-				batch.end();
+				particuleBatch.begin();
+				pTmp.draw(particuleBatch, delta);
+				particuleBatch.end();
 			}
 			else
 			{

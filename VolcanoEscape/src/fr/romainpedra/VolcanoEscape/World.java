@@ -122,7 +122,7 @@ public class World {
 			
 			//Si un mur sort de l'ecran
 			if(wallTmpLeft.getY()< -1 * Wall.HEIGHT)
-			{
+			{			
 				wallTmpLeft.remove();
 				wallLeft.remove(i);
 				
@@ -241,7 +241,7 @@ public class World {
 		
 		UpdateBackground(delta, stage);	
 		UpdateWall(stage, delta);	
-		//UpdateRock();
+		UpdateRock();
 		
 		CheckRockCollision(delta);
 		
