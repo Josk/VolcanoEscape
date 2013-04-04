@@ -203,20 +203,18 @@ public class World {
 		}
 	}
 	
-	public void UpdateRock()
+	public void CheckPositionRocks()
 	{	
 		for(int i=0; i<this.rocks.size(); i++)
 		{
 			Rock rTmp = this.rocks.get(i);
-			if(rTmp.getY() <= this.lava.getY() + 30)
+			if(rTmp.getY() <= this.lava.getY() + 60)
 			{
-				System.out.println("kjhgfdsdfghjklkjhgf");
 				ParticleEffect particule = new ParticleEffect();
-				particule.load(Gdx.files.internal("data/Particles/flame.p"), 
+				particule.load(Gdx.files.internal("data/Particles/flame2.p"), 
 			    Gdx.files.internal("data"));
-				//particule.setPosition(stage.getWidth()/2, stage.getHeight()/2);
 				particule.setPosition(rTmp.getX(), rTmp.getY());
-				particule.setDuration(500);
+				particule.setDuration(1);
 				particule.start();
 				particules.add(particule);
 				
@@ -242,7 +240,7 @@ public class World {
 		
 		UpdateBackground(delta, stage);	
 		UpdateWall(stage, delta);	
-		UpdateRock();
+		CheckPositionRocks();
 		
 		CheckRockCollision(delta);
 		
