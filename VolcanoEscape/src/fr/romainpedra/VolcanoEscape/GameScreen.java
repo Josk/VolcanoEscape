@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -121,6 +122,29 @@ public class GameScreen implements Screen {
 		// rendu des elements ajoutes a la scene
 		scene.draw();
 		
+		SpriteBatch batch = new SpriteBatch();
+		for(int i =0; i< this.world.particules.size(); i++)
+		{
+			ParticleEffect pTmp = this.world.particules.get(i);
+			if(! pTmp.isComplete())
+			{
+				System.out.println("kjhgfdsdfghjkjhgdsdfghjkjhgfdsdcfgbnj,k;");
+				batch.begin();
+				pTmp.draw(batch, delta);
+				batch.end();
+			}
+			else
+			{
+				System.out.println("LOLOLOLOLOLO");
+				pTmp.dispose();
+				this.world.particules.remove(i);
+				i --;
+				if(i < 0)
+				{
+					i = 0;
+				}
+			}
+		}
 		
 		/*fontBatch.begin();
 		scoreLabel.draw(fontBatch, 100);
