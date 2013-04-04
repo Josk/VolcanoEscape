@@ -283,8 +283,10 @@ public class World {
 		this.rocks.clear();
 		Preferences prefs = Gdx.app.getPreferences( "VolcanoEscape" );
 		
-		if(prefs.getInteger("score"))
+		if(prefs.getInteger("score")<(int)player.score ){
 			prefs.putInteger( "score", (int)player.score );
+			prefs.flush();
+		}
 		
 		spawnRockRate=spawnRockRateStart;
 		this.player.init();
