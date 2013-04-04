@@ -1,6 +1,7 @@
 package fr.romainpedra.VolcanoEscape;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
@@ -156,6 +157,10 @@ public class GameScreen implements Screen {
 		//fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		
 		fontBatch.begin();
+			Preferences prefs = Gdx.app.getPreferences( "VolcanoEscape" );
+		
+		
+			font.draw(fontBatch, "Record: "+prefs.getInteger("score"), 100 , scene.getHeight() - 0);
 			font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 0);
 		fontBatch.end();
 	}

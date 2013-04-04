@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.swing.text.Position;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -309,7 +310,13 @@ public class World {
 		}
 		
 		this.rocks.clear();
-	
+		Preferences prefs = Gdx.app.getPreferences( "VolcanoEscape" );
+		
+		if(prefs.getInteger("score")<(int)player.score ){
+			prefs.putInteger( "score", (int)player.score );
+			prefs.flush();
+		}
+		
 		spawnRockRate=spawnRockRateStart;
 		this.player.init();
 	}
