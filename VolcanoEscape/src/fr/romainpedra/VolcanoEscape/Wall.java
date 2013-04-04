@@ -6,12 +6,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.run;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.forever;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.rotateBy;
-
 public class Wall extends Actor {
 	
 	public int x;
