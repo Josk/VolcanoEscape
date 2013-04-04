@@ -58,7 +58,9 @@ public class GameScreen implements Screen {
 		particuleBatch = new SpriteBatch();
 		player = new Player(scene);
 		world = new World(scene, 400f, player);
-		
+		scene.getCamera().update();
+		fontBatch.setProjectionMatrix(scene.getCamera().combined);
+		particuleBatch.setProjectionMatrix(scene.getCamera().combined);
 		/*player.addAction(
 				forever(rotateBy(360, 2.0f))
 		);*/
@@ -125,7 +127,8 @@ public class GameScreen implements Screen {
 		scene.draw();
 		
 	
-		for(int i =0; i< this.world.particules.size(); i++)
+		
+		/*for(int i =0; i< this.world.particules.size(); i++)
 		{
 			ParticleEffect pTmp = this.world.particules.get(i);
 			if(! pTmp.isComplete())
@@ -145,13 +148,13 @@ public class GameScreen implements Screen {
 					i = 0;
 				}
 			}
-		}
+		}*/
 		
 		/*fontBatch.begin();
 		scoreLabel.draw(fontBatch, 100);
 		fontBatch.end();*/
 		
-		fontBatch.setProjectionMatrix(scene.getCamera().combined);
+		//fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		
 		fontBatch.begin();
 			Preferences prefs = Gdx.app.getPreferences( "VolcanoEscape" );

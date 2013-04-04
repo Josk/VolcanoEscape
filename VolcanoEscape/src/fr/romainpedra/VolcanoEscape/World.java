@@ -19,7 +19,7 @@ public class World {
 	private ArrayList<Wall> wallRight; //paroies de droite du terrain
 	private ArrayList<Wall> wallLeft; //paroies de gauche du terrain
 	private ArrayList<BackGround> backgrounds;
-	public ArrayList<ParticleEffect> particules;
+	public ArrayList<Particle> particules;
 	private Stage scene;
 	private Player player;
 	private int countWall;
@@ -46,7 +46,7 @@ public class World {
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
 		this.backgrounds = new ArrayList<BackGround>();
-		this.particules = new ArrayList<ParticleEffect>();
+		this.particules = new ArrayList<Particle>();
 		
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
@@ -201,21 +201,50 @@ public class World {
 		}
 	}
 	
-	public void CheckPositionRocks()
+	public void CheckParticleState()
+	{
+		for(int i=0; i<this.particules.size(); i++)
+		{
+			ParticleEffect pTmp = this.particules.get(i).m_particle;
+			if(pTmp.isComplete())
+			{
+				pTmp.dispose();
+				this.particules.remove(i);
+				i --;
+				if(i < 0)
+				{
+					i = 0;
+				}
+			}
+		}
+	}
+	
+	
+	public void CheckPositionRocks(Stage stage)
 	{	
 		for(int i=0; i<this.rocks.size(); i++)
-		{
+		{	
 			Rock rTmp = this.rocks.get(i);
+			//System.out.println("X: "+ this.rocks.get(i).getX());
 			if(rTmp.getY() <= this.lava.getY() + 60)
 			{
 				Assets.get().lavanoise.play(0.5f);
 				ParticleEffect particule = new ParticleEffect();
 				particule.load(Gdx.files.internal("data/Particles/flame2.p"), 
 			    Gdx.files.internal("data"));
-				particule.setPosition(rTmp.getX(), rTmp.getY());
+				Particle pTmp = new Particle(stage, rTmp.getX()+rTmp.getWidth()/2, rTmp.getY(), particule, 1);
+				stage.addActor(pTmp);
+				this.lavaOverlay.toFront();
+				this.lava.toFront();
+				
+				
+				//System.out.println("X: "+ rTmp.getX());
+				//System.out.println("Y: "+ rTmp.getY());
+				//particule.
+				/*particule.setPosition(rTmp.getX()+rTmp.getWidth()/2, rTmp.getY());
 				particule.setDuration(1);
-				particule.start();
-				particules.add(particule);
+				particule.start();*/
+				particules.add(pTmp);
 				
 				rTmp.Destroy();
 				this.rocks.remove(i);
@@ -239,8 +268,8 @@ public class World {
 		
 		UpdateBackground(delta, stage);	
 		UpdateWall(stage, delta);	
-		CheckPositionRocks();
-		
+		CheckPositionRocks(stage);
+		CheckParticleState();
 		CheckRockCollision(delta);
 		
 		if (this.player.getY() <= this.lava.getY()+30 )
