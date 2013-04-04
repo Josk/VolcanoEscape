@@ -157,12 +157,23 @@ public class World {
 		}
 	}
 	
-	public void CheckRockCollision(float delta)
+	public void CheckRockCollision(float delta, Stage stage)
 	{
 		for(int i=0; i<this.rocks.size();i++){
 			Rock rock = this.rocks.get(i);
 			rock.update(delta);
-			if(rock.collide()){				
+			if(rock.collide()){	
+				
+				ParticleEffect particule = new ParticleEffect();
+				particule.load(Gdx.files.internal("data/Particles/rockexplosion.p"), 
+			    Gdx.files.internal("data"));
+				Particle pTmp = new Particle(stage, rock.getX()+rock.getWidth()/2, rock.getY(), particule, 1);
+				stage.addActor(pTmp);
+				this.lavaOverlay.toFront();
+				this.lava.toFront();			
+				particules.add(pTmp);
+				
+				
 				this.rocks.remove(i);
 				rock.remove();
 				--i;
@@ -236,15 +247,7 @@ public class World {
 				Particle pTmp = new Particle(stage, rTmp.getX()+rTmp.getWidth()/2, rTmp.getY(), particule, 1);
 				stage.addActor(pTmp);
 				this.lavaOverlay.toFront();
-				this.lava.toFront();
-				
-				
-				//System.out.println("X: "+ rTmp.getX());
-				//System.out.println("Y: "+ rTmp.getY());
-				//particule.
-				/*particule.setPosition(rTmp.getX()+rTmp.getWidth()/2, rTmp.getY());
-				particule.setDuration(1);
-				particule.start();*/
+				this.lava.toFront();			
 				particules.add(pTmp);
 				
 				rTmp.Destroy();
@@ -271,7 +274,7 @@ public class World {
 		UpdateWall(stage, delta);	
 		CheckPositionRocks(stage);
 		CheckParticleState();
-		CheckRockCollision(delta);
+		CheckRockCollision(delta, stage);
 		
 		if (this.player.getY() <= this.lava.getY()+30 )
 		{
