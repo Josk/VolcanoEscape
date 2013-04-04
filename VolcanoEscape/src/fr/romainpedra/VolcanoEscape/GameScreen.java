@@ -128,14 +128,14 @@ public class GameScreen implements Screen {
 			ParticleEffect pTmp = this.world.particules.get(i);
 			if(! pTmp.isComplete())
 			{
-				System.out.println("kjhgfdsdfghjkjhgdsdfghjkjhgfdsdcfgbnj,k;");
+				//System.out.println("kjhgfdsdfghjkjhgdsdfghjkjhgfdsdcfgbnj,k;");
 				batch.begin();
 				pTmp.draw(batch, delta);
 				batch.end();
 			}
 			else
 			{
-				System.out.println("LOLOLOLOLOLO");
+				//System.out.println("LOLOLOLOLOLO");
 				pTmp.dispose();
 				this.world.particules.remove(i);
 				i --;
