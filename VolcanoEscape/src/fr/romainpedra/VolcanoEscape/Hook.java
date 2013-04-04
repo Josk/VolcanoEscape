@@ -55,24 +55,19 @@ public class Hook extends Actor {
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
 ////////////////////////
-this.toFront();
+//this.toFront();
 		batch.draw(hook, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
 				getHeight(), getScaleX(), getScaleY(), getRotation());
 		
 //		batch.draw(rgnDebug,getX()+getOriginX(), getY()+getOriginY(), getOriginX(), getOriginY(), getWidth(),
 //				getHeight(), getScaleX()/10, getScaleY()/10, 0);
 		
-//		float xP=100;//player.getX();
-//		float yP=100;//player.getY();
-//		float xH=400;//getX();
-//		float yH=400;//getY();
+
 
 		float xP=player.getX()+player.widthAsset/2;
 		float yP=player.getY()+player.heightAsset/2;
 		float xH=getX()+width/2;
 		float yH=getY()+height/2;
-//		float xH=getX()+getOriginX();
-//		float yH=getY()+getOriginY();
 		
 		float a=(yH-yP)/(xH-xP);
 		float b=yP-a*xP;

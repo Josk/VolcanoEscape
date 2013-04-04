@@ -153,6 +153,7 @@ public class GameScreen implements Screen {
 		fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		
 		fontBatch.begin();
+			font.draw(fontBatch, "Record: "+(int)player.score, 100 , scene.getHeight() - 0);
 			font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 0);
 		fontBatch.end();
 	}
