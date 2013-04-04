@@ -9,8 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 
 public class Hook extends Actor {
-	TextureRegion hook = new TextureRegion();
+	TextureRegion hookL = new TextureRegion();
+	TextureRegion hookR = new TextureRegion();
+	TextureRegion hook;
+	
 	TextureRegion chain = new TextureRegion();
+	TextureRegion rgnDebug = new TextureRegion();
+	
 	public float width=120, height=120;
 	public float widthChain=60, heightChain=60;
 	
@@ -20,23 +25,31 @@ public class Hook extends Actor {
 	
 	public Hook(Stage stage,Player player) {
 		
+		rgnDebug = new TextureRegion(Assets.get().lave1);
 		
-		hook = new TextureRegion(Assets.get().hook);
+		hookL = new TextureRegion(Assets.get().hookL);
+		hookR = new TextureRegion(Assets.get().hookR);
+		hook=hookL;
 		chain = new TextureRegion(Assets.get().chain);
 		setSize(width, height);
-		setOrigin(width/2, height/2);
+//		setOrigin(width/2, height/2);
 		stage.addActor(this);
 		
 		this.player=player;
 	}
 	
-	public void update(float speedScroll, float Delta){
-		setPosition(this.getX(), this.getY() - speedScroll* Delta);
+	public void update(float speedScroll, float delta){
+		setPosition(this.getX(), this.getY() - speedScroll* delta);
+//		this.setRotation(this.getRotation() + 10 * delta);
 	}
 	
-	public void Hooked(float x, float y, float degrees){
+	public void Hooked(float x, float y, int wall){
 		setPosition(x, y);
-		//setRotation(degrees);
+		if(wall==1){
+			hook=hookL;
+		}else{
+			hook=hookR;
+		}
 	}
 	
 	@Override
@@ -45,6 +58,9 @@ public class Hook extends Actor {
 this.toFront();
 		batch.draw(hook, getX(), getY(), getOriginX(), getOriginY(), getWidth(),
 				getHeight(), getScaleX(), getScaleY(), getRotation());
+		
+//		batch.draw(rgnDebug,getX()+getOriginX(), getY()+getOriginY(), getOriginX(), getOriginY(), getWidth(),
+//				getHeight(), getScaleX()/10, getScaleY()/10, 0);
 		
 //		float xP=100;//player.getX();
 //		float yP=100;//player.getY();
@@ -55,6 +71,8 @@ this.toFront();
 		float yP=player.getY()+player.heightAsset/2;
 		float xH=getX()+width/2;
 		float yH=getY()+height/2;
+//		float xH=getX()+getOriginX();
+//		float yH=getY()+getOriginY();
 		
 		float a=(yH-yP)/(xH-xP);
 		float b=yP-a*xP;
