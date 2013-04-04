@@ -29,6 +29,7 @@ public class World {
 	private LavaOverlay lavaOverlay;
 	
 	private float spawnRockRateStart=2f;//5
+	private float spawnRockRateMin=0.5f;
 	private float spawnRockRate=2f; 
 	private float timeNextSpawn=2f;
 	
@@ -255,7 +256,7 @@ public class World {
 			timeNextSpawn=elapsedTime+spawnRockRate;
 		}
 		
-		if(elapsedTime>timeNextChangeSpawnRate){
+		if(spawnRockRate>spawnRockRateMin&&elapsedTime>timeNextChangeSpawnRate){
 			
 			spawnRockRate-=spawnModif;
 //			System.out.println(spawnRockRate);
