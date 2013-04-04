@@ -5,6 +5,9 @@ import java.util.Random;
 
 import javax.swing.text.Position;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -15,6 +18,7 @@ public class World {
 	private ArrayList<Wall> wallRight; //paroies de droite du terrain
 	private ArrayList<Wall> wallLeft; //paroies de gauche du terrain
 	private ArrayList<BackGround> backgrounds;
+	public ArrayList<ParticleEffect> particules;
 	private Stage scene;
 	private Player player;
 	private int countWall;
@@ -41,6 +45,7 @@ public class World {
 		this.wallRight = new ArrayList<Wall>();
 		this.wallLeft = new ArrayList<Wall>();
 		this.backgrounds = new ArrayList<BackGround>();
+		this.particules = new ArrayList<ParticleEffect>();
 		
 		this.speedScroll =  speedScroll;
 		this.rocks = new ArrayList<Rock>();
@@ -85,8 +90,8 @@ public class World {
 		this.lavaOverlay.toFront();
 		stage.addActor(this.lava);
 		this.lava.toFront();
-		//Assets.get().music1.play();
-		//Assets.get().music1.setLooping(true);
+		Assets.get().music1.play();
+		Assets.get().music1.setLooping(true);
 		
 		
 	}
@@ -196,7 +201,7 @@ public class World {
 							
 			//Si un mur sort de l'ecran
 			if(wallTmp.getY()<  -1 * Wall.HEIGHT)
-			{
+			{			
 				wallTmp.remove();
 				wallRight.remove(i);
 				i -= 1;
@@ -242,6 +247,31 @@ public class World {
 		if (this.player.getY() <= this.lava.getY()+30 )
 		{
 			gameOver();
+		}
+		
+		for(int i=0; i<this.rocks.size(); i++)
+		{
+			Rock rTmp = this.rocks.get(i);
+			if(rTmp.getY() <= this.lava.getY() + 30)
+			{
+				ParticleEffect particule = new ParticleEffect();
+				particule.load(Gdx.files.internal("data/Particles/flame.p"), 
+			    Gdx.files.internal("data"));
+				//particule.setPosition(stage.getWidth()/2, stage.getHeight()/2);
+				particule.setPosition(rTmp.getX(), rTmp.getY());
+				particule.setDuration(500);
+				particule.start();
+				particules.add(particule);
+				
+				rTmp.Destroy();
+				this.rocks.remove(i);
+				i --;
+				if(i < 0)
+				{
+					i = 0;
+				}
+				//Fdfjgthkughfsdq
+			}
 		}
 		
 		elapsedTime+=delta;
