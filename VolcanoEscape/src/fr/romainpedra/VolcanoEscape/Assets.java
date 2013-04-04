@@ -30,6 +30,9 @@ public class Assets {
 	public Music music1;
 	public FileHandle font;
 	public FileHandle fontImg;
+	public Sound death;
+	public Sound jump;
+	public Sound lavanoise;
 	
 	public void load(){
 		persoJumpL = new Texture(Gdx.files.internal("data/heroJumpL.png"));
@@ -84,6 +87,12 @@ public class Assets {
 		rock.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		music1 = Gdx.audio.newMusic(Gdx.files.internal("data/Sounds/music1.mp3"));
+		
+		death = Gdx.audio.newSound(Gdx.files.internal("data/Sounds/death.wav"));
+		
+		jump = Gdx.audio.newSound(Gdx.files.internal("data/Sounds/jump.wav"));
+		
+		lavanoise = Gdx.audio.newSound(Gdx.files.internal("data/Sounds/lavanoise.wav"));
 		
 		laveOverlaid1 = new Texture(Gdx.files.internal("data/overlay1.png"));
 		laveOverlaid1.setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -198,6 +207,18 @@ public class Assets {
 		if(music1 != null){
 			music1.dispose();
 			music1 = null;
+		}
+		if(death != null){
+			death.dispose();
+			death = null;
+		}
+		if(jump != null){
+			jump.dispose();
+			jump = null;
+		}
+		if(lavanoise != null){
+			lavanoise.dispose();
+			lavanoise = null;
 		}
 		if(font != null) {
 			font = null;

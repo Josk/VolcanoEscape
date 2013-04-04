@@ -68,6 +68,8 @@ public class Player extends Actor {
 		 this.dirY =0;
 		 this.score=0;
 		 this.hookedWall=1;
+		 Assets.get().music1.play();
+		 Assets.get().music1.setLooping(true);
 	}
 	
 	public void hook(float x,float y){
@@ -97,7 +99,7 @@ public class Player extends Actor {
 //				System.out.println("WTF?!");
 				break;
 			}
-						
+			Assets.get().jump.play(0.5f);	
 			//Vector2 coords = localToStageCoordinates(new Vector2(x, y));
 			this.dirX=(x-(Player.this.getX()+Player.this.getWidth()/2))*hookSpeed;
 			this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*hookSpeed;

@@ -82,8 +82,6 @@ public class World {
 		this.lavaOverlay.toFront();
 		stage.addActor(this.lava);
 		this.lava.toFront();
-		//Assets.get().music1.play();
-		//Assets.get().music1.setLooping(true);
 		
 		
 	}
@@ -210,6 +208,7 @@ public class World {
 			Rock rTmp = this.rocks.get(i);
 			if(rTmp.getY() <= this.lava.getY() + 60)
 			{
+				Assets.get().lavanoise.play(0.5f);
 				ParticleEffect particule = new ParticleEffect();
 				particule.load(Gdx.files.internal("data/Particles/flame2.p"), 
 			    Gdx.files.internal("data"));
@@ -276,6 +275,8 @@ public class World {
 	}
 	
 	void gameOver(){
+		Assets.get().music1.stop();
+		Assets.get().death.play();
 		for(int i=0; i<this.rocks.size();i++){
 			this.rocks.get(i).remove();
 		}
