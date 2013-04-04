@@ -31,7 +31,7 @@ public class World {
 	private float spawnRockRate=2f; 
 	private float timeNextSpawn=2f;
 	
-	private float changeSpawnRate=5f;
+	private float changeSpawnRate=2f;//5
 	private float spawnModif=0.1f;
 	private float timeNextChangeSpawnRate=5f;
 	

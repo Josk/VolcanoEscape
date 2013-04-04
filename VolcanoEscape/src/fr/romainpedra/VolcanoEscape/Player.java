@@ -62,7 +62,7 @@ public class Player extends Actor {
 //		setOrigin(width/2, height/2);
 		setPosition(wallSize-widthAsset/2, heightStage/2);
 		
-		hook.Hooked(wallSize-width/2-10, heightStage/2+50);
+		hook.Hooked(-wallSize/2, heightStage/2+50,1);
 		
 		 this.dirX =0;
 		 this.dirY =0;
@@ -72,28 +72,24 @@ public class Player extends Actor {
 	
 	public void hook(float x,float y){
 		if(x<this.wallSize*4||x>this.widthStage-this.wallSize*4){
-			
 //			System.out.println(this.hookedWall);
 			switch (this.hookedWall) {
-			case 1:
+			case 1://R
 				if(x<this.widthStage/2){
-//					System.out.println("L No");
 					return;
 				}else{
 					this.hookedWall=2;
-					x=this.widthStage-hook.height;
-//					System.out.println("L ok");
+					x=this.widthStage-wallSize*12/8;
+//					x=this.widthStage/2;
 				}
 				break;
 				
-			case 2:
+			case 2://L
 				if(x>this.widthStage/2){
-//					System.out.println("R no");
 					return;
 				}else{
 					this.hookedWall=1;
-					x=0;
-//					System.out.println("R ok");
+					x=-wallSize/2;
 				}
 				break;
 				
@@ -107,7 +103,7 @@ public class Player extends Actor {
 			this.dirY=(y-(Player.this.getY()+Player.this.getHeight()/2))*hookSpeed;
 //			hookPosX=x;
 //			hookPosY=y;
-			hook.Hooked(x, y);
+			hook.Hooked(x, y,this.hookedWall);
 		}
 	}
 	

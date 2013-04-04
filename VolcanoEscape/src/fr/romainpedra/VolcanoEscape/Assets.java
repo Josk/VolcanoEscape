@@ -14,6 +14,10 @@ public class Assets {
 	
 	public Texture persoJumpL;
 	public Texture persoWaitL;
+	
+	public Texture hookL;
+	public Texture hookR;
+	public Texture chain;
 
 	public Texture persoJumpR;
 	public Texture persoWaitR;
@@ -39,6 +43,15 @@ public class Assets {
 		
 		persoWaitR = new Texture(Gdx.files.internal("data/heroWaitR.png"));
 		persoWaitR.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		hookL = new Texture(Gdx.files.internal("data/hookL.png"));
+		hookL.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		hookR = new Texture(Gdx.files.internal("data/hookR.png"));
+		hookR.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+		
+		chain = new Texture(Gdx.files.internal("data/chain.png"));
+		chain.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		
 		lave1 = new Texture(Gdx.files.internal("data/lava1.png"));
 		lave1.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
