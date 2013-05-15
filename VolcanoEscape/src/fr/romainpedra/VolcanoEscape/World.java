@@ -21,7 +21,7 @@ public class World {
 	private ArrayList<BackGround> backgrounds;
 	public ArrayList<Particle> particules;
 	private Stage scene;
-	private Player player;
+	public Player player;
 	private int countWall;
 	private int countBackGround;
 //	private int posY;
@@ -263,6 +263,8 @@ public class World {
 	
 	public void UpdateWorld(float delta, Stage stage)
 	{		
+		if(!this.player.started)
+			return;
 		this.player.update(delta);
 		if(this.player.dirX ==0)
 		{
@@ -317,8 +319,8 @@ public class World {
 		this.rocks.clear();
 		Preferences prefs = Gdx.app.getPreferences( "VolcanoEscape" );
 		
-		if(prefs.getInteger("score")<(int)player.score ){
-			prefs.putInteger( "score", (int)player.score );
+		if(prefs.getInteger("playerScore")<(int)player.score ){
+			prefs.putInteger( "playerScore", (int)player.score );
 			prefs.flush();
 		}
 		

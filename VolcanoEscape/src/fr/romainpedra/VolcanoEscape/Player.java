@@ -33,6 +33,8 @@ public class Player extends Actor {
 	
 	public Hook hook;
 	
+	public boolean started=false;
+	
 	public Player(Stage stage) {
 		
 		
@@ -58,6 +60,7 @@ public class Player extends Actor {
 	}
 	
 	public void init(){
+		started=false;
 		setSize(widthAsset, heightAsset);
 //		setOrigin(width/2, height/2);
 		setPosition(wallSize-widthAsset/2, heightStage/2);
@@ -73,6 +76,7 @@ public class Player extends Actor {
 	}
 	
 	public void hook(float x,float y){
+		started=true;
 		if(x<this.wallSize*4||x>this.widthStage-this.wallSize*4){
 //			System.out.println(this.hookedWall);
 			switch (this.hookedWall) {
@@ -116,12 +120,6 @@ public class Player extends Actor {
 			this.setY(this.getY() + this.dirY  * delta);
 		}
 
-/*		
-		this.gravity += this.gravityForce;
-		if (this.gravity > this.gravityMax)
-			this.gravity = this.gravityMax;
-		this.dirY -= gravity *delta;
-	*/	
 
 
 		if (!ScreenOut(this.getX() + this.dirX*delta, this.getY())) {
@@ -136,13 +134,8 @@ public class Player extends Actor {
 				this.setX(this.widthStage-this.widthAsset/2-wallSize);
 			}
 			
-			
-//			this.dirX *= -1;
-			// this.dirX=0;
 		}
-		
-//		if(this.getY()>this.score)
-//			this.score=(int)this.getY();
+
 		this.score+=delta;
 	}
 

@@ -35,6 +35,9 @@ public class GameScreen implements Screen {
 	private static final int HEIGHT = 480;
 	
 	private static GameScreen current;
+	
+	private boolean paused=false;
+	
 	public static GameScreen get() {
 		return current;
 	}
@@ -102,6 +105,8 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {	
+		if(paused)
+			delta=0;
 		update(delta);
 		
 		Gdx.gl.glClearColor(16f/255f, 3f/255f, 28f/255f, 1.0f);
@@ -112,56 +117,24 @@ public class GameScreen implements Screen {
 		// incrementer le temps ecoule
 		elapsedTime += Gdx.graphics.getDeltaTime();
 		
-//		// si le temps ecoule est superieur a 1 seconde
-//		if(elapsedTime > 1.0f) {
-//			// ajouter un alien
-//			spawnAlien();
-//			// remise a zero pour le prochain alien
-//			elapsedTime = 0.0f;
-//		}
-//		
+
 		// update / faire bouger les elements de la scene / animer les actions
 		scene.act();
 		
 		// rendu des elements ajoutes a la scene
 		scene.draw();
 		
-	
-		
-		/*for(int i =0; i< this.world.particules.size(); i++)
-		{
-			ParticleEffect pTmp = this.world.particules.get(i);
-			if(! pTmp.isComplete())
-			{
-				particuleBatch.begin();
-				pTmp.draw(particuleBatch, delta);
-				particuleBatch.end();
-			}
-			else
-			{
-				//System.out.println("LOLOLOLOLOLO");
-				pTmp.dispose();
-				this.world.particules.remove(i);
-				i --;
-				if(i < 0)
-				{
-					i = 0;
-				}
-			}
-		}*/
-		
-		/*fontBatch.begin();
-		scoreLabel.draw(fontBatch, 100);
-		fontBatch.end();*/
-		
-		//fontBatch.setProjectionMatrix(scene.getCamera().combined);
 		
 		fontBatch.begin();
 			Preferences prefs = Gdx.app.getPreferences( "VolcanoEscape" );
 		
-		
-			font.draw(fontBatch, "Record: "+prefs.getInteger("score"), 100 , scene.getHeight() - 0);
-			font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 0);
+			if(world.player.started){
+				font.draw(fontBatch, "Record: "+prefs.getInteger("playerScore"), 100 , scene.getHeight() - 0);
+				font.draw(fontBatch, "Score: "+(int)player.score, scene.getWidth() - 350 , scene.getHeight() - 0);
+			}else{
+				font.draw(fontBatch, "Touch the screen to start", 50 , scene.getHeight()/2);
+			}
+
 		fontBatch.end();
 	}
 	
@@ -173,10 +146,12 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void pause() {
+		paused=true;
 	}
 
 	@Override
 	public void resume() {
+		paused=false;
 	}
 
 	@Override
