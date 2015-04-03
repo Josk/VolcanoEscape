@@ -1,2 +1,2 @@
-VolcanoEscape ta mere
+VolcanoEscape
 =============
